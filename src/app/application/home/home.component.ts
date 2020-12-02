@@ -12,4 +12,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  doLogin(event: Event): void {
+    (window as any)["$"]('#staticBackdrop').modal('hide');
+  }
+
 }
+
