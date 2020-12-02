@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UmanaFormaRestServiceService } from 'src/app/service/umana-forma-rest-service.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  private username !: string;
+  private password !: string;
+
+  constructor(private umanaFormaRestService : UmanaFormaRestServiceService) { }
 
   ngOnInit(): void {
   }
 
   doLogin(event: Event): void {
-    (window as any)["$"]('#staticBackdrop').modal('hide');
+    
   }
 
 }

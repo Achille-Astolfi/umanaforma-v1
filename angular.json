@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "umanaforma-v1"
+  "defaultProject": "umanaforma-v1",
+  "cli": {
+    "analytics": "bfab89fc-4318-49c1-9e9b-cc0c59dfda0e"
+  }
 }
