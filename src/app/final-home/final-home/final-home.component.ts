@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Person } from 'src/app/person';
+import { Person } from 'src/app/class/person';
 import { LogRestService } from 'src/app/service/log-rest.service';
 
 @Component({

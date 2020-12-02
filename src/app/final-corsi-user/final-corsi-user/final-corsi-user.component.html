@@ -33,10 +33,16 @@
   </header>
   <main>
     <div class="container">
-      <h1>Benvenuto, user</h1>
-      <ul>
-          <li><a class="nav-link" routerLink="/corsi-user">Elenco dei corsi</a></li>
-      </ul>
+      <div class="row">
+        <div class="col" *ngFor="let course of courseList">
+          <h5>{{course.id}}: {{course.description}}</h5>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae modi neque dolores odit cumque
+            perferendis consequatur accusantium, ipsum labore consequuntur sit iste iusto explicabo obcaecati
+            perspiciatis cum. Ad, tempore aut.</p>
+          <button class="btn btn-primary" routerLink="/corsi-iscriviti">Iscriviti</button>
+          <!-- IL TASTO ISCRIVITI DEVE MANDARE NELLA PAGINA DI ISCRIZIONE E DEVE SPUNTARE IL NOME DEL CORSO-->
+        </div>
+      </div>
     </div>
   </main>
   <footer class="bg-light text-dark">

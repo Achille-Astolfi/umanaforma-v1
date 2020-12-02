@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { TokenRequest } from '../dto/token-request';
@@ -15,6 +15,7 @@ const url = "/api";
 })
 export class LogRestService {
 
+  isAlive = false;
   roles = new Array<string>();
   
   //Il token di autorizzazione per le chiamare REST
@@ -22,8 +23,19 @@ export class LogRestService {
 
   constructor(private http: HttpClient) { }
 
+  checkAlive(): void{
+    let response = this.http.get<any>(url);
+    response.subscribe((answer) => this.aliveOk(answer), (error) => this.aliveKo(error));
+  }
+  private aliveOk(answer: any): void {
+    this.isAlive=true;
+  }
+  private aliveKo(error: HttpErrorResponse): void {
+    this.isAlive=false;
+  }
+
+
   login(username: string, password: string): Observable<string>{
-    //this.mockRoles(username);
     let request = new TokenRequest();
     request.password = password;
     request.username = username;
@@ -48,7 +60,7 @@ export class LogRestService {
     isAdmin(): boolean{
       //Questo metodo restituisce true se "Admin" è un elemento di roles
       //restituisce false se "Admin" non è un elemento di roles
-      console.log("SEI UNO ADMIN");
+      console.log("SEI UN ADMIN");
       return this.roles.indexOf("ADMIN") >= 0; //da true se è maggiore di 0 (quindi se esiste)
     }
   
@@ -56,9 +68,23 @@ export class LogRestService {
       //Questo metodo restituisce true se "User" è un elemento di roles
       //restituisce false se "User" non è un elemento di roles
       console.log("SEI UNO USER");
-      return this.roles.indexOf("USER") >= 0; //da true se è maggiore di 0 (quindi se esiste)
-      
+      return this.roles.indexOf("USER") >= 0; //da true se è maggiore di 0 (quindi se esiste) 
     }
 
+    getCourses(): Observable<Course[]>{
+      if(this.token === undefined){
+        return from([]);
+      }
+      let headers = new HttpHeaders({authorization: this.token});
+  
+      let response = this.http.get<CoursesResponse>(url + "/courses", {headers});
+  
+      return response.pipe(map((answer) => this.getCoursesMap(answer)));
+    }
+  
+    getCoursesMap(answer: CoursesResponse): Course[]{
+      return answer._embedded.courses;
+    }
+  
 
 }

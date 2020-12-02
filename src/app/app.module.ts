@@ -9,6 +9,8 @@ import { SampleHomeComponent } from './sample/sample-home/sample-home.component'
 import { FinalHomeModule } from './final-home/final-home.module';
 import { FormsModule } from '@angular/forms';
 import { FinalDashboardModule } from './final-dashboard/final-dashboard.module';
+import { FinalCorsiIscrivitiModule } from './final-corsi-iscriviti/final-corsi-iscriviti.module';
+import { FinalCorsiUserModule } from './final-corsi-user/final-corsi-user.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FinalDashboardModule } from './final-dashboard/final-dashboard.module';
     FinalHomeModule,
     AppRoutingModule,
     FormsModule,
-    FinalDashboardModule
+    FinalDashboardModule,
+    FinalCorsiIscrivitiModule,
+    FinalCorsiUserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
