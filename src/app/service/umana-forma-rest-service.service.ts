@@ -14,6 +14,8 @@ export class UmanaFormaRestServiceService {
 
   roles = new Array<string>();
 
+  userLogged?: string;
+
   private token?: string;
 
   constructor(
@@ -24,6 +26,7 @@ export class UmanaFormaRestServiceService {
     let request = new TokenRequest();
     request.username = username;
     request.password = password;
+    this.userLogged = username;
 
     let response = this.http.post<TokenResponse>(url + "/token", request);
 
@@ -34,5 +37,23 @@ export class UmanaFormaRestServiceService {
     this.roles = answer.authorization.roles;
     this.token = answer.authentication.token_type + ' ' + answer.authentication.access_token;
     return "Un saluto dal gruppo 1";
+  }
+
+  /*getCourses(): Observable<Course[]> {
+    if (this.token === undefined) {
+      // posso restituire undefined o un observable vuoto
+      return from([]);
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+    let response = this.http.get<CoursesResponse>(url + "/courses", { headers });
+    return response.pipe(map((answer) => this.getCoursesMap(answer)));
+  }*/
+
+  isLogged(): boolean {
+    return this.token !== undefined;
+  }
+
+  isAdmin(): boolean {
+    return this.userLogged === "admin";
   }
 }

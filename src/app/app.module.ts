@@ -5,20 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconsModule } from './icons/icons.module';
 import { HttpClientModule } from '@angular/common/http';
-//import { SampleModule } from './sample/sample.module';
-//import { HomeComponent } from './application/home/home.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    //HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     IconsModule,
     HttpClientModule,
-    //SampleModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
