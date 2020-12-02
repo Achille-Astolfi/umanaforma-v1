@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconsModule } from './icons/icons.module';
 import { SampleModule } from './sample/sample.module';
+import { SampleHomeComponent } from './sample/sample-home/sample-home.component';
+import { FinalHomeModule } from './final-home/final-home.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,9 @@ import { SampleModule } from './sample/sample.module';
     BrowserModule,
     IconsModule,
     SampleModule,
-    AppRoutingModule
+    FinalHomeModule,
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

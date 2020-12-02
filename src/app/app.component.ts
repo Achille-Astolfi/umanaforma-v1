@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(private router: Router) { }
-
+  title = "Ciao pupi";
   displayingSample(): boolean {
     return this.router.url.startsWith("/sample");
   }
