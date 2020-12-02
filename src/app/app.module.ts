@@ -1,9 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IconsModule } from './icons/icons.module';
+import { FooterModule } from './footer/footer.module';
+import { HeaderModule } from './header/header.module';
 import { SampleModule } from './sample/sample.module';
 
 @NgModule({
@@ -12,7 +13,9 @@ import { SampleModule } from './sample/sample.module';
   ],
   imports: [
     BrowserModule,
-    IconsModule,
+    HttpClientModule,
+    HeaderModule,
+    FooterModule,
     SampleModule,
     AppRoutingModule
   ],
