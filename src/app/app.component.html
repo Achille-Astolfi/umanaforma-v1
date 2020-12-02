@@ -28,16 +28,13 @@
               <icon-person></icon-person> {{umanaFormaRestService.userLogged}}
             </a>
             <!-- DIV LOGIN-->
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
-              *ngIf="!umanaFormaRestService.isLogged()">
-              <button class="dropdown-item" type="button" data-toggle="modal" data-target="#staticBackdrop">Log
-                in</button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <button class="dropdown-item" type="button" data-toggle="modal" data-target="#staticBackdrop" 
+                *ngIf="umanaFormaRestService.logged">Log in</button>
+              <button class="dropdown-item" type="button" (click)="umanaFormaRestService.logout()"
+                *ngIf="!umanaFormaRestService.logged">Log out</button>
             </div>
             <!-- DIV LOGOUT-->
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
-              *ngIf="umanaFormaRestService.isLogged()">
-              <button class="dropdown-item" type="button">Log out</button>
-            </div>
           </li>
         </ul>
       </div>

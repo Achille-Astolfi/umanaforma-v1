@@ -24,14 +24,14 @@ export class AppComponent {
   }
 
   doLogin(event: Event): void {
-    if (this.utente.password === "password"){
-      switch(this.utente.username){
-         case 'user':
+    if (this.utente.password === "password") {
+      switch (this.utente.username) {
+        case "user":
           this.loginVerified();
           console.log(this.userDashboardChoise());
           this.router.navigateByUrl(this.userDashboardChoise());
           break;
-        case 'admin':
+        case "admin":
           this.loginVerified();
           console.log(this.userDashboardChoise());
           this.router.navigateByUrl(this.userDashboardChoise());
@@ -39,20 +39,20 @@ export class AppComponent {
         default:
           console.log("Valori Errati!");
           break;
-    }
-  }
-   /**  if (this.utente.username === "user" && this.utente.password === "password") {
-      this.loginVerified();
-      this.router.navigateByUrl(this.userDashboardChoise());
-    } else {
-      if (this.utente.username === "admin" && this.utente.password === "password") {
-        this.loginVerified();
-        console.log(this.utente.username);
-        this.router.navigateByUrl(this.userDashboardChoise());
-      } else {
-        console.log("Valori Errati!");
       }
-    }*/
+    }
+    /**  if (this.utente.username === "user" && this.utente.password === "password") {
+       this.loginVerified();
+       this.router.navigateByUrl(this.userDashboardChoise());
+     } else {
+       if (this.utente.username === "admin" && this.utente.password === "password") {
+         this.loginVerified();
+         console.log(this.utente.username);
+         this.router.navigateByUrl(this.userDashboardChoise());
+       } else {
+         console.log("Valori Errati!");
+       }
+     }*/
     this.utente.clear();
     (window as any)["$"]('#staticBackdrop').modal('hide');
   }
