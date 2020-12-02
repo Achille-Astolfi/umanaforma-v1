@@ -20,6 +20,8 @@ export class UmanaRestService {
 
   constructor(private http: HttpClient) { }
 
+  currentCourseId!: number;
+
   //LOGIN
 
   login(username: string, password: string): Observable<string> {
@@ -51,6 +53,12 @@ export class UmanaRestService {
     return (this.token!==undefined);
   }
 
+  logout(): Observable<string> {
+    this.roles = [];
+    this.token = undefined;
+    return from(["Logout effettuato correttamente."]);
+  }
+
   //CORSI
 
   getCourses(): Observable<Course[]> {
@@ -73,5 +81,9 @@ export class UmanaRestService {
     let headers = new HttpHeaders({ authorization: this.token });
     let response = this.http.get<Course>(url + "/courses/" + id, {headers});
     return response;
+  }
+
+  getCourseId(id: number): void {
+    this.currentCourseId = id;
   }
 }

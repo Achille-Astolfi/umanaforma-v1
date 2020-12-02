@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import { CorsiIscrivitiComponent } from './corsi-iscriviti/corsi-iscriviti.component';
 import { IconsModule } from '../icons/icons.module';
 import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  declarations: [DashboardUserComponent],
+  declarations: [CorsiIscrivitiComponent],
   imports: [
     CommonModule, IconsModule, RouterModule
   ],
   exports: [
-    DashboardUserComponent
+    CorsiIscrivitiComponent
   ]
 })
-export class DashboardUserModule { }
-export { DashboardUserComponent }
+export class CorsiIscrivitiModule { }
+export { CorsiIscrivitiComponent }

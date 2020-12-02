@@ -50,4 +50,8 @@ export class HomeComponent implements OnInit {
     console.error(error);
   }
 
+  doLogout(event:Event): void {
+    this.umanaRestService.logout();
+  }
+
 }

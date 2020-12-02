@@ -9,7 +9,9 @@ import { HomeModule } from './home/home.module';
 import { FormsModule } from '@angular/forms';
 import { DashboardUserModule } from './dashboard-user/dashboard-user.module';
 import { DashboardAdminModule } from './dashboard-admin/dashboard-admin.module';
-import { CorsiUserModule } from './corsi-user/corsi-user.module';
+import { CorsiUserComponent, CorsiUserModule } from './corsi-user/corsi-user.module';
+import { CorsiIscrivitiComponent } from './corsi-iscriviti/corsi-iscriviti/corsi-iscriviti.component';
+import { CorsiIscrivitiModule } from './corsi-iscriviti/corsi-iscriviti.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { CorsiUserModule } from './corsi-user/corsi-user.module';
     DashboardUserModule,
     DashboardAdminModule,
     CorsiUserModule,
+    CorsiIscrivitiModule,
     SampleModule,
     AppRoutingModule,
   ],
