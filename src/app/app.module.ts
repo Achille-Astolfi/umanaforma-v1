@@ -8,6 +8,7 @@ import { SampleModule } from './sample/sample.module';
 import { SampleHomeComponent } from './sample/sample-home/sample-home.component';
 import { FinalHomeModule } from './final-home/final-home.module';
 import { FormsModule } from '@angular/forms';
+import { FinalDashboardModule } from './final-dashboard/final-dashboard.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     SampleModule,
     FinalHomeModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    FinalDashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

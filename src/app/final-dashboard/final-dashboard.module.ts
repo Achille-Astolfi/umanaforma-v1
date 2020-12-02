@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FinalDashboardUserComponent } from './final-dashboard-user/final-dashboard-user.component';
 import { FinalDashboardAdminComponent } from './final-dashboard-admin/final-dashboard-admin.component';
 import { IconsModule } from '../icons/icons.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -10,10 +11,8 @@ import { IconsModule } from '../icons/icons.module';
   declarations: [FinalDashboardUserComponent, FinalDashboardAdminComponent],
   imports: [
     CommonModule,
-    IconsModule
-  ],
-  exports: [
-    IconsModule
+    IconsModule,
+    RouterModule
   ]
 })
 export class FinalDashboardModule { }

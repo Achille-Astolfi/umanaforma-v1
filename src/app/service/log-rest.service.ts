@@ -48,12 +48,17 @@ export class LogRestService {
     isAdmin(): boolean{
       //Questo metodo restituisce true se "Admin" è un elemento di roles
       //restituisce false se "Admin" non è un elemento di roles
+      console.log("SEI UNO ADMIN");
       return this.roles.indexOf("ADMIN") >= 0; //da true se è maggiore di 0 (quindi se esiste)
     }
   
     isUser(): boolean{
       //Questo metodo restituisce true se "User" è un elemento di roles
       //restituisce false se "User" non è un elemento di roles
+      console.log("SEI UNO USER");
       return this.roles.indexOf("USER") >= 0; //da true se è maggiore di 0 (quindi se esiste)
+      
     }
+
+
 }
