@@ -13,7 +13,8 @@ export class TypeLoggedUserGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.umanaFormaRestService.isLogged();
+    return true;
+    //this.umanaFormaRestService.isLogged();
   }
   
 }

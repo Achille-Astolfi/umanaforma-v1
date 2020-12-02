@@ -1,4 +1,5 @@
 <div *ngIf="!displayingSample()">
+
   <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <a class="navbar-brand" href="#">
@@ -10,13 +11,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" routerLinkActive="active bg-success">
+          <li class="nav-item">
             <a class="nav-link" routerLink="home">Home</a>
           </li>
-          <li class="nav-item" routerLinkActive="active bg-success" *ngIf="umanaFormaRestService.isLogged()">
+          <li class="nav-item" *ngIf="umanaFormaRestService.isLogged()">
             <a class="nav-link" routerLink="corsi">Corsi</a>
           </li>
-          <li class="nav-item" routerLinkActive="active bg-success" *ngIf="umanaFormaRestService.isAdmin()">
+          <li class="nav-item" *ngIf="umanaFormaRestService.isAdmin()">
             <a class="nav-link" routerLink="candidati">Candidati</a>
           </li>
         </ul>
@@ -25,46 +26,55 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               <icon-person></icon-person> {{umanaFormaRestService.userLogged}}
-            </a> 
-            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <form ngNativeValidate (submit)="doLogin($event)">
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="user o admin"
-                          [(ngModel)]="utente.username" autocomplete="off" [ngModelOptions]="{standalone: true}">
-                      </div>
-                      <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="password"
-                          [(ngModel)]="utente.password" autocomplete="off" [ngModelOptions]="{standalone: true}">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                      <button type="submit" class="btn btn-primary" routerLink="dashboard-user">Login</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
+            </a>
+            <!-- DIV LOGIN-->
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
+              *ngIf="!umanaFormaRestService.isLogged()">
+              <button class="dropdown-item" type="button" data-toggle="modal" data-target="#staticBackdrop">Log
+                in</button>
             </div>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <button class="dropdown-item" type="button" *ngIf="umanaFormaRestService.isLogged()">Log out</button>
+            <!-- DIV LOGOUT-->
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
+              *ngIf="umanaFormaRestService.isLogged()">
+              <button class="dropdown-item" type="button">Log out</button>
             </div>
           </li>
         </ul>
       </div>
     </nav>
   </header>
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form (submit)="doLogin($event)">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="user o admin" [(ngModel)]="utente.username" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="password" [(ngModel)]="utente.password" [ngModelOptions]="{standalone: true}">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+            <button type="submit" class="btn btn-primary" (click)="doLogin($event)">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </div>
 <router-outlet></router-outlet>
 <div *ngIf="!displayingSample()">
