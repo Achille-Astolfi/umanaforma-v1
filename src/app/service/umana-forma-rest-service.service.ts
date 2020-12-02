@@ -16,7 +16,9 @@ export class UmanaFormaRestServiceService {
 
   private token?: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   login(username: string, password: string): Observable<string> {
     let request = new TokenRequest();
