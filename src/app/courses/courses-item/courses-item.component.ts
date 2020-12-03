@@ -22,6 +22,7 @@ export class CoursesItemComponent implements OnInit {
 
   doAction(event: Event): void {
     this.titleCourse.setCourse(this.course.description);
+    this.titleCourse.setIdCourse(this.course.id);
     this.router.navigateByUrl("/add-candidate");
   }
 

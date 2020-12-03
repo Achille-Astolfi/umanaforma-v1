@@ -10,6 +10,7 @@ import { Course } from '../resource/course';
 import { CandidatesRequest } from '../dto/candidates-request';
 import { CandidatesResponse } from '../dto/candidates-response';
 import { Candidate } from '../resource/candidate';
+import { SubscriptionRequest } from '../dto/subscription-request';
 
 const url = "/api";
 
@@ -114,6 +115,24 @@ export class UmanaFormaRestServiceService {
   private onAddCandidateMap(answer: HttpResponse<null>): string | null {
     console.log(answer.headers.get("location"));
     return answer.headers.get("location");
+  }
+
+  onAddSubscription(course: number, candidate: number): Observable<number | null> {
+    if (this.token === undefined) {
+      return from([]);
+    }
+    let request = new SubscriptionRequest();
+    request.course = course;
+    request.candidate = candidate;
+
+    let headers = new HttpHeaders({ authorization: this.token });
+    let response = this.http.post<null>(url + "/subscriptions", request, { headers, observe: "response" })
+    return response.pipe(map((answer) => this.onAddSubscriptionMap(answer)));
+  }
+
+  public onAddSubscriptionMap(answer: HttpResponse<null>): number | null {
+    console.log(answer.status);
+    return answer.status;
   }
  
 }

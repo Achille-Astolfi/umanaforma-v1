@@ -1,7 +1,9 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CandidatesRequest } from 'src/app/dto/candidates-request';
+import { SubscriptionRequest } from 'src/app/dto/subscription-request';
 import { TitleCourseService } from 'src/app/service/title-course.service';
 import { UmanaFormaRestServiceService } from 'src/app/service/umana-forma-rest-service.service';
 
@@ -18,7 +20,8 @@ export class AddCandidateComponent implements OnInit {
 
   constructor(
     public titleCourse: TitleCourseService,
-    public umanaFormaRestService: UmanaFormaRestServiceService
+    public umanaFormaRestService: UmanaFormaRestServiceService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,13 +35,29 @@ export class AddCandidateComponent implements OnInit {
   addToFormOk(answer: string | null) {
     if (answer !== null) {
       let id = answer.lastIndexOf("/");
-      let val = answer.substring(id  +1);
+      let val = parseInt(answer.substring(id + 1));
       console.log("Val: " + val);
+      this.subscription(this.titleCourse.idCourse, val).subscribe((answerS) => this.subscriptionOk(answerS), (error) => this.subscriptionKo(error));
     }
   }
 
   addToFormKo(error: HttpErrorResponse) {
     console.error(error.status);
+  }
+
+  subscription(courseId: number, candidateId: number): Observable<number | null> {
+    return this.umanaFormaRestService.onAddSubscription(courseId, candidateId);
+
+  }
+
+  subscriptionOk(answer: number | null): void {
+    if (answer === 201) {
+      this.router.navigateByUrl("/corsi-grazie");
+    }
+  }
+
+  subscriptionKo(error: HttpErrorResponse): void {
+    alert("Subscription Faild")
   }
 
 }
