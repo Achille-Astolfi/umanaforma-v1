@@ -1,6 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenRequestIscrizione } from 'src/app/dto/token-request-iscrizione';
 import { Course } from 'src/app/resource/course';
 import { UmanaRestService } from 'src/app/service/umana-rest.service';
 
@@ -10,6 +11,7 @@ import { UmanaRestService } from 'src/app/service/umana-rest.service';
   styleUrls: ['./corsi-iscriviti.component.css']
 })
 export class CorsiIscrivitiComponent implements OnInit {
+  person = new TokenRequestIscrizione();
   course!: Course;
   router: any;
 
@@ -18,15 +20,35 @@ export class CorsiIscrivitiComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.umanaRestService.currentCourseId);
     this.umanaRestService.getCourseById(this.umanaRestService.currentCourseId)
     .subscribe((answer) => this.getCourseOk(answer), (error) => this.getCourseKo(error));
   }
 
-  //DA METTERE NEL SERVICE
+  doRegister(event: Event): void {
+    let response = this.umanaRestService.registerCourse(this.course.id, this.person.firstName, this.person.lastName, this.person.emailAddress);
+    response.subscribe((answer) => this.registerOk(answer), (error) => this.registerKo(error));
+  }
+
+  private registerOk(answer: string): void {
+    let candidateId = parseInt(answer);
+    let response = this.umanaRestService.subscriptionCourseid(this.course.id, candidateId);
+    response.subscribe((answer) => this.subscriptionOk(answer), (error) => this.subscriptionKo(error));
+  }
+
+  private registerKo(error: HttpErrorResponse): void {
+    console.error(error);
+  }
+
+  private subscriptionOk(answer: string): void {
+    this.router.navigateByUrl("/corsi-grazie");
+  }
+
+  private subscriptionKo(error: HttpErrorResponse): void {
+    console.error(error);
+  }
+
   private getCourseOk(answer: Course): void {
     this.course = answer;
-    console.log(this.course);
   }
   private getCourseKo(error: HttpErrorResponse): void {
     console.error(error);

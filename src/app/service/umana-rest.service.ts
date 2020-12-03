@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { TokenRequest } from '../dto/token-request';
@@ -6,6 +6,9 @@ import { TokenResponse } from '../dto/token-response';
 import { map } from 'rxjs/operators';
 import { Course } from '../resource/course';
 import { CoursesResponse } from '../dto/courses-response';
+import { TokenRequestIscrizione } from '../dto/token-request-iscrizione';
+import { Router } from '@angular/router';
+import { TokenRequestSubscription } from '../dto/token-request-subscription';
 
 const url = "/api";
 
@@ -18,7 +21,7 @@ export class UmanaRestService {
   
   private token?: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   currentCourseId!: number;
 
@@ -28,8 +31,6 @@ export class UmanaRestService {
     let request = new TokenRequest();
     request.username = username;
     request.password = password;
-
-
 
     let response = this.http.post<TokenResponse>(url + "/token", request);
     return response.pipe(map((answer) => this.loginMap(answer)));
@@ -56,6 +57,7 @@ export class UmanaRestService {
   logout(): Observable<string> {
     this.roles = [];
     this.token = undefined;
+    this.router.navigateByUrl("/home");
     return from(["Logout effettuato correttamente."]);
   }
 
@@ -85,5 +87,46 @@ export class UmanaRestService {
 
   getCourseId(id: number): void {
     this.currentCourseId = id;
+  }
+
+  registerCourse(id: number, firstName: string, lastName: string, emailAddress: string): Observable<string> {
+    let request = new TokenRequestIscrizione();
+    request.firstName = firstName;
+    request.lastName = lastName;
+    request.emailAddress = emailAddress;
+
+    if (this.token === undefined) {
+      return from([]);
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+
+    let response = this.http.post<null>(url + "/candidates", request, { headers, observe: "response" })
+    return response.pipe(map((answer) => this.iscrizioneMap(answer)));
+  }
+
+  private iscrizioneMap(answer: HttpResponse<null>): string {
+    console.log(answer.headers.get("location"));
+    let tempString = answer.headers.get("location");
+    tempString = tempString!.charAt(tempString!.length-1);
+    return tempString;
+  }
+
+  subscriptionCourseid(course: number, candidate: number): Observable<string> {
+    let request = new TokenRequestSubscription();
+    request.course = course;
+    request.candidate = candidate;
+
+    if (this.token === undefined) {
+      return from([]);
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+
+    let response = this.http.post<null>(url + "/subscriptions", request, { headers, observe: "response" })
+    return response.pipe(map((answer) => this.subscriptionMap(answer)));
+  }
+
+  private subscriptionMap(answer: HttpResponse<null>): string {
+    console.log(answer);
+    return "Sottoscrizione effettuata.";
   }
 }

@@ -9,24 +9,33 @@ import { HomeModule } from './home/home.module';
 import { FormsModule } from '@angular/forms';
 import { DashboardUserModule } from './dashboard-user/dashboard-user.module';
 import { DashboardAdminModule } from './dashboard-admin/dashboard-admin.module';
-import { CorsiUserComponent, CorsiUserModule } from './corsi-user/corsi-user.module';
-import { CorsiIscrivitiComponent } from './corsi-iscriviti/corsi-iscriviti/corsi-iscriviti.component';
+import { CorsiUserModule } from './corsi-user/corsi-user.module';
 import { CorsiIscrivitiModule } from './corsi-iscriviti/corsi-iscriviti.module';
+import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';
+import { CorsiGrazieModule } from './corsi-grazie/corsi-grazie.module';
+import { FooterComponent } from './footer/footer.component';
+import { CorsiAdminModule } from './corsi-admin/corsi-admin.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     IconsModule,
+    RouterModule,
     HomeModule,
     DashboardUserModule,
-    DashboardAdminModule,
     CorsiUserModule,
     CorsiIscrivitiModule,
+    CorsiGrazieModule,
+    DashboardAdminModule,
+    CorsiAdminModule,
     SampleModule,
     AppRoutingModule,
   ],
