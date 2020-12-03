@@ -7,7 +7,7 @@ import { TypeLoggedUserGuard } from './guard/type-logged-user.guard';
 
 const routes: Routes = [
   {path: "home", component: HomeComponent},
-  {path: "dashboard-user", component: DashboardUserComponent},
+  {path: "dashboard-user", component: DashboardUserComponent, canActivate: [TypeLoggedUserGuard]},
   {path: "dashboard-admin", component: DashboardAdminComponent, canActivate: [TypeLoggedUserGuard]},
   {path: "", pathMatch: "full", redirectTo:"/home"},
   

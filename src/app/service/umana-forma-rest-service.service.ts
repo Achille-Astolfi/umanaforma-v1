@@ -31,11 +31,8 @@ export class UmanaFormaRestServiceService {
     let request = new TokenRequest();
     request.username = username;
     request.password = password;
-    this.userLogged = username;
-
+    
     let response = this.http.post<TokenResponse>(url + "/token", request);
-
-    this.logged = false;
 
     return response.pipe(map((answer) => this.loginMap(answer)));
   }
@@ -56,12 +53,14 @@ export class UmanaFormaRestServiceService {
     return this.userLogged === "admin";
   }
 
-  logout(): void{
+  logout(): Observable<string>{
     this.logged = true;
     this.userLogged = "";
     this.token = undefined;
     this.errorMessage="";
+    this.roles = [];
     this.router.navigateByUrl("/home");
+    return from(["Logout effettuato correttamente!"]);
   }
    /*getCourses(): Observable<Course[]> {
     if (this.token === undefined) {
