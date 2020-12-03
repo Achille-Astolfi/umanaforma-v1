@@ -5,8 +5,10 @@ import { map } from 'rxjs/operators';
 import { TokenRequest } from '../dto/token-request';
 import { TokenResponse } from '../dto/token-response';
 import { Router } from '@angular/router';
+import { CoursesResponse } from '../dto/courses-response';
+import { Course } from '../resource/course';
 
-const url="/api";
+const url = "/api";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,8 @@ export class UmanaFormaRestServiceService {
 
   private token?: string;
 
-  logged = true; 
-  public errorMessage? : string;
+  logged = true;
+  public errorMessage?: string;
 
   constructor(
     private http: HttpClient,
@@ -31,7 +33,7 @@ export class UmanaFormaRestServiceService {
     let request = new TokenRequest();
     request.username = username;
     request.password = password;
-    
+
     let response = this.http.post<TokenResponse>(url + "/token", request);
 
     return response.pipe(map((answer) => this.loginMap(answer)));
@@ -40,7 +42,7 @@ export class UmanaFormaRestServiceService {
   private loginMap(answer: TokenResponse): string {
     this.roles = answer.authorization.roles;
     this.token = answer.authentication.token_type + ' ' + answer.authentication.access_token;
-    
+
     console.log(this.token);
     return "Un saluto dal gruppo 1";
   }
@@ -53,16 +55,16 @@ export class UmanaFormaRestServiceService {
     return this.userLogged === "admin";
   }
 
-  logout(): Observable<string>{
+  logout(): Observable<string> {
     this.logged = true;
     this.userLogged = "";
     this.token = undefined;
-    this.errorMessage="";
+    this.errorMessage = "";
     this.roles = [];
     this.router.navigateByUrl("/home");
     return from(["Logout effettuato correttamente!"]);
   }
-   /*getCourses(): Observable<Course[]> {
+  getCourses(): Observable<Course[]> {
     if (this.token === undefined) {
       // posso restituire undefined o un observable vuoto
       return from([]);
@@ -70,5 +72,18 @@ export class UmanaFormaRestServiceService {
     let headers = new HttpHeaders({ authorization: this.token });
     let response = this.http.get<CoursesResponse>(url + "/courses", { headers });
     return response.pipe(map((answer) => this.getCoursesMap(answer)));
-  }*/
+  }
+
+  private getCoursesMap(answer: CoursesResponse): Course[] {
+    return answer._embedded.courses;
+  }
+
+  getCourseById(id: number): Observable<Course> {
+    if (this.token === undefined) {
+      // posso restituire undefined o un observable vuoto
+      return from([]); //observable vuoto
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+    return this.http.get<Course>(url + "/courses/" + id, {headers});
+  }
 }

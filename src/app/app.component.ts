@@ -55,7 +55,7 @@ export class AppComponent {
     (window as any)["$"]('#staticBackdrop').modal('hide');
     this.umanaFormaRestService.userLogged = this.utente.username;
     this.umanaFormaRestService.logged = false;
-    this.utente.clear();
+    //this.utente.clear();
   }
 
   private loginKo(error: HttpErrorResponse): void {
@@ -71,7 +71,12 @@ export class AppComponent {
   }
 
   userDashboardChoise(): string {
-    return "/dashboard-" + this.utente.username;
+    if(this.utente.username === "user") {
+      return "/dashboard-user";
+    } else {
+      return "/dashboard-admin";
+    }
+    
   }
 
 }
