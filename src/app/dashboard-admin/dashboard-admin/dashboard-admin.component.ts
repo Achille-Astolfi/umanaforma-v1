@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TitleService } from 'src/app/service/title.service';
 
 
 @Component({
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService:TitleService) { }
 
   ngOnInit(): void {
+    this.titleService.setPage("Dashboard Admin");
   }
 
 }

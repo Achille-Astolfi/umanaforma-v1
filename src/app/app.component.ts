@@ -27,34 +27,23 @@ export class AppComponent {
     if (this.utente.password === "password") {
       switch (this.utente.username) {
         case "user":
-          this.loginVerified();
-          console.log(this.userDashboardChoise());
-          this.router.navigateByUrl(this.userDashboardChoise());
-          break;
         case "admin":
           this.loginVerified();
           console.log(this.userDashboardChoise());
           this.router.navigateByUrl(this.userDashboardChoise());
+          (window as any)["$"]('#staticBackdrop').modal('hide');
+          this.utente.clear();
           break;
         default:
           console.log("Valori Errati!");
+         this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
+          this.utente.clear();
           break;
       }
+    } else {
+      this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
+      this.utente.clear();
     }
-    /**  if (this.utente.username === "user" && this.utente.password === "password") {
-       this.loginVerified();
-       this.router.navigateByUrl(this.userDashboardChoise());
-     } else {
-       if (this.utente.username === "admin" && this.utente.password === "password") {
-         this.loginVerified();
-         console.log(this.utente.username);
-         this.router.navigateByUrl(this.userDashboardChoise());
-       } else {
-         console.log("Valori Errati!");
-       }
-     }*/
-    this.utente.clear();
-    (window as any)["$"]('#staticBackdrop').modal('hide');
   }
 
   private loginOk(answer: string): void {

@@ -20,6 +20,7 @@ export class UmanaFormaRestServiceService {
   private token?: string;
 
   logged = true; 
+  public errorMessage? : string;
 
   constructor(
     private http: HttpClient,
@@ -59,6 +60,7 @@ export class UmanaFormaRestServiceService {
     this.logged = true;
     this.userLogged = "";
     this.token = undefined;
+    this.errorMessage="";
     this.router.navigateByUrl("/home");
   }
    /*getCourses(): Observable<Course[]> {
