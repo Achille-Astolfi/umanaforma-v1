@@ -23,29 +23,6 @@ export class AppComponent {
   }
 
   doLogin(event: Event): void {
-    /*if (this.utente.password === "password") {
-      switch (this.utente.username) {
-        case "user":
-        case "admin":
-          this.loginVerified();
-          console.log(this.userDashboardChoise());
-          this.router.navigateByUrl(this.userDashboardChoise());
-          (window as any)["$"]('#staticBackdrop').modal('hide');
-          this.utente.clear();
-          break;
-        default:
-          this.loginVerified();
-          console.log("Valori Errati!");
-          this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
-          this.utente.clear();
-          break;
-      }
-    } else {
-      this.loginVerified();
-      this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
-      this.utente.clear();
-    }*/
-
     this.loginVerified();
   }
 

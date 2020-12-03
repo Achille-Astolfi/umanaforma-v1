@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,6 +7,9 @@ import { TokenResponse } from '../dto/token-response';
 import { Router } from '@angular/router';
 import { CoursesResponse } from '../dto/courses-response';
 import { Course } from '../resource/course';
+import { CandidatesRequest } from '../dto/candidates-request';
+import { CandidatesResponse } from '../dto/candidates-response';
+import { Candidate } from '../resource/candidate';
 
 const url = "/api";
 
@@ -86,4 +89,31 @@ export class UmanaFormaRestServiceService {
     let headers = new HttpHeaders({ authorization: this.token });
     return this.http.get<Course>(url + "/courses/" + id, {headers});
   }
+
+  onAddCandidate(first: string, last: string, email: string): Observable<string | null> {
+    if (this.token === undefined) {
+      // posso restituire undefined o un observable vuoto
+      return from([]);
+    }
+    let request = new CandidatesRequest();
+    request.firstName = first;
+    request.lastName = last;
+    request.emailAddress = email;
+
+    //let response = this.http.post<CandidatesResponse>(url + "/candidates", request);
+    let headers = new HttpHeaders({ authorization: this.token });
+    let response = this.http.post<null>(url + "/candidates", request, { headers, observe: "response" })
+    return response.pipe(map((answer) => this.onAddCandidateMap(answer)));
+  }
+
+  /**onAddCandidateOk(answer: HttpResponse<null>) {
+    console.log(answer);
+    console.log(answer.headers.get("location"));
+  }*/
+
+  private onAddCandidateMap(answer: HttpResponse<null>): string | null {
+    console.log(answer.headers.get("location"));
+    return answer.headers.get("location");
+  }
+ 
 }

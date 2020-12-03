@@ -1,0 +1,26 @@
+<main>
+    <div class="container">
+        <h5>{{titleCourse.titleCourse}} </h5>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae modi neque dolores odit cumque
+            perferendis consequatur accusantium, ipsum labore consequuntur sit iste iusto explicabo obcaecati
+            perspiciatis cum. Ad, tempore aut.</p>
+        <form (submit)="addToForm($event)">
+            <div class="form-group">
+                <label for="first">Nome</label>
+                <input type="text" class="form-control" id="first" placeholder="il tuo nome" [(ngModel)]="nome" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+                <label for="last">Cognome</label>
+                <input type="text" class="form-control" id="last" placeholder="il tuo cognome" [(ngModel)]="cognome" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+                <label for="last">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="la tua email" aria-describedby="emailHelp" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                <small id="emailHelp" class="form-text text-muted">Non la condivideremo con nessuno.</small>
+            </div>
+            <button type="button" class="btn btn-secondary">Annulla</button>
+            &nbsp;
+            <button type="submit" class="btn btn-primary">Iscriviti</button>
+        </form>
+    </div>
+</main>
