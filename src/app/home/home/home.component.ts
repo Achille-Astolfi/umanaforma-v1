@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Route } from '@angular/compiler/src/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { TokenResponse } from 'src/app/dto/token-response';
@@ -14,8 +14,9 @@ import { UmanaRestService } from 'src/app/service/umana-rest.service';
 export class HomeComponent implements OnInit {
   username = "";
   password = "";
-  message = "";
+  error = false;
   router: Router;
+  @Output() usernameEmitter = new EventEmitter<String>();
 
   constructor(
     public umanaRestService: UmanaRestService, router: Router
@@ -29,12 +30,10 @@ export class HomeComponent implements OnInit {
   doLogin(event: Event): void {
     let response = this.umanaRestService.login(this.username, this.password);
     response.subscribe((answer) => this.loginOk(answer), (error) => this.loginKo(error));
-    
-    (window as any)["$"]('#staticBackdrop').modal('hide');
   }
 
   private loginOk(answer: string): void {
-    this.message = answer;
+    (window as any)["$"]('#staticBackdrop').modal('hide');
     switch(this.username) {
       case "user":
         this.router.navigateByUrl('/dashboard-user');
@@ -46,8 +45,14 @@ export class HomeComponent implements OnInit {
         break;
     }    
   }
+
   private loginKo(error: HttpErrorResponse): void {
+    this.error = true;
     console.error(error);
+    //spegnimento errore
+    setTimeout(() => {
+      this.error = false;
+    }, 4000);
   }
 
   doLogout(event:Event): void {

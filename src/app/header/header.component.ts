@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UmanaRestService } from '../service/umana-rest.service';
 
 @Component({
@@ -16,5 +16,4 @@ export class HeaderComponent implements OnInit {
   doLogout(event:Event): void {
     this.umanaRestService.logout();
   }
-
 }

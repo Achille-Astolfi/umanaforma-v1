@@ -20,6 +20,8 @@ const url = "/api";
 })
 export class UmanaRestService {
 
+  showUsername!: string;
+
   roles = new Array<string>();
   
   private token?: string;
@@ -42,7 +44,8 @@ export class UmanaRestService {
   private loginMap(answer: TokenResponse): string {
     this.roles = answer.authorization.roles;
     this.token = answer.authentication.token_type + ' ' + answer.authentication.access_token;
-    return "accesso effettuato correttamente";
+    this.showUsername = answer.authorization.username;
+    return answer.authorization.username;
   }
 
   isUser(): boolean {
@@ -55,6 +58,10 @@ export class UmanaRestService {
 
   isLogged(): boolean {
     return (this.token!==undefined);
+  }
+
+  setShowUsername(username: string): void {
+    this.showUsername = username;
   }
 
   logout(): Observable<string> {

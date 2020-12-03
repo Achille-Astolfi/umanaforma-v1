@@ -12,11 +12,16 @@
         <form>
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username" placeholder="user o admin">
+            <input type="text" class="form-control" id="username" name="username" [ngClass]="{'is-invalid': error}" [(ngModel)]="username" placeholder="user o admin">
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" placeholder="password">
+            <input type="password" class="form-control" id="password" name="password" [ngClass]="{'is-invalid': error}" [(ngModel)]="password" placeholder="password">
+          </div>
+          <div>
+            <div class="alert alert-danger" role="alert" *ngIf="error">
+              Le credenziali non sono corrette.
+            </div>
           </div>
         </form>
       </div>
