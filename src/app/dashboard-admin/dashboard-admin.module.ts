@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { IconsModule } from '../icons/icons.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -9,7 +10,11 @@ import { IconsModule } from '../icons/icons.module';
   declarations: [DashboardAdminComponent],
   imports: [
     CommonModule,
-    IconsModule
+    IconsModule,
+    RouterModule
+  ],
+  exports: [
+    DashboardAdminComponent
   ]
 })
 export class DashboardAdminModule { }

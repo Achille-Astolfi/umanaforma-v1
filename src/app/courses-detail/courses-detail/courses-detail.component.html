@@ -1,0 +1,12 @@
+<main>
+    <div class="container">
+        <h5>{{titleCourse.titleCourse}}</h5>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quia, consectetur omnis nulla cum
+            rerum nihil fugiat totam temporibus explicabo id aliquam maxime perferendis, ab quidem facilis
+            eligendi est similique.</p>
+        <div class="btn-group-vertical" role="group" aria-label="Elenco dei candidati" 
+        *ngFor="let candidate of candidateList">
+            <app-courses-detail-item></app-courses-detail-item>
+        </div>
+    </div>
+</main>

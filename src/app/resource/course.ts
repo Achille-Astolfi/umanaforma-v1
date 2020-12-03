@@ -1,10 +1,8 @@
 import { Candidate } from './candidate';
+import { CourseCandidates } from './course-candidates';
 
 export interface Course {
     id: number,
     description: string,
-    subscriptions?: {
-        id: number,
-        candidate: Candidate
-    }[]
+    subscriptions?: CourseCandidates[]
 }

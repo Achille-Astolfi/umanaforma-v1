@@ -3,4 +3,7 @@
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae modi neque dolores odit cumque
     perferendis consequatur accusantium, ipsum labore consequuntur sit iste iusto explicabo obcaecati
     perspiciatis cum. Ad, tempore aut.</p>
-<p><button (click)="doAction($event)" class="btn btn-primary">Iscriviti</button></p>
+<p><button (click)="doAction($event)" class="btn btn-primary"
+        *ngIf="!umanaFormaRestService.isAdmin()">Iscriviti</button></p>
+<p><button (click)="doActionDetail($event)" class="btn btn-primary"
+        *ngIf="umanaFormaRestService.isAdmin()">Dettaglio</button></p>

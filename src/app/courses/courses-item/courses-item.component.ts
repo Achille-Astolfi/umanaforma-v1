@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Course } from 'src/app/resource/course';
 import { TitleCourseService } from 'src/app/service/title-course.service';
+import { UmanaFormaRestServiceService } from 'src/app/service/umana-forma-rest-service.service';
 
 @Component({
   selector: 'app-courses-item',
@@ -14,7 +15,8 @@ export class CoursesItemComponent implements OnInit {
 
   constructor(
     private titleCourse: TitleCourseService,
-    private router: Router
+    private router: Router,
+    public umanaFormaRestService : UmanaFormaRestServiceService
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,10 @@ export class CoursesItemComponent implements OnInit {
     this.titleCourse.setCourse(this.course.description);
     this.titleCourse.setIdCourse(this.course.id);
     this.router.navigateByUrl("/add-candidate");
+  }
+
+  doActionDetail(event: Event): void {
+    this.router.navigateByUrl("/corsi-dettaglio");
   }
 
 }
