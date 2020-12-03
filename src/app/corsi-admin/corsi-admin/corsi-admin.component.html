@@ -1,27 +1,7 @@
 <main>
 <div class="container">
     <div class="row">
-    <div class="col">
-        <h5>Titolo corso 1</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae modi neque dolores odit cumque
-        perferendis consequatur accusantium, ipsum labore consequuntur sit iste iusto explicabo obcaecati
-        perspiciatis cum. Ad, tempore aut.</p>
-        <button class="btn btn-primary">Dettaglio</button>
-    </div>
-    <div class="col">
-        <h5>Titolo corso 2</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quia, consectetur omnis nulla cum
-        rerum nihil fugiat totam temporibus explicabo id aliquam maxime perferendis, ab quidem facilis
-        eligendi est similique.</p>
-        <button class="btn btn-primary">Dettaglio</button>
-    </div>
-    <div class="col">
-        <h5>Titolo corso 3</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem laborum facere, sit eligendi aspernatur
-        neque sint fugit, ullam suscipit illo voluptates iusto expedita ipsa voluptatem ipsum? Ipsum minus
-        mollitia autem.</p>
-        <button class="btn btn-primary">Dettaglio</button>
-    </div>
+        <app-corsi-admin-item *ngFor="let course of courseList" [course]="course"></app-corsi-admin-item>
     </div>
 </div>
 </main>

@@ -30,9 +30,4 @@ export class CorsiUserComponent implements OnInit {
   private getCoursesKo(error: HttpErrorResponse): void {
     console.error(error);
   }
-  
-  doLogout(event:Event): void {
-    this.umanaRestService.logout();
-    this.router.navigateByUrl('/home');
-  }
 }

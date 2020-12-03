@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Course } from 'src/app/resource/course';
+import { UmanaRestService } from 'src/app/service/umana-rest.service';
 
 @Component({
   selector: 'app-corsi-admin-item',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CorsiAdminItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() course!: Course;
+
+  constructor(private umanaRestService: UmanaRestService, private router: Router) {
+   }
 
   ngOnInit(): void {
+  }
+
+  doDettaglio(event: Event): void {
+    this.router.navigateByUrl('/corsi-dettaglio');
   }
 
 }

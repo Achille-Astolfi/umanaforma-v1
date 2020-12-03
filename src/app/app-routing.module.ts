@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CorsiAdminComponent, CorsiAdminModule } from './corsi-admin/corsi-admin.module';
+import { CorsiDettaglioComponent } from './corsi-dettaglio/corsi-dettaglio/corsi-dettaglio.component';
 import { CorsiGrazieComponent } from './corsi-grazie/corsi-grazie.module';
 import { CorsiIscrivitiComponent } from './corsi-iscriviti/corsi-iscriviti/corsi-iscriviti.component';
 import { CorsiUserComponent } from './corsi-user/corsi-user.module';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'corsi-grazie', component: CorsiGrazieComponent, canActivate: [UserGuard]},
   { path: 'dashboard-admin', component: DashboardAdminComponent, canActivate: [AdminGuard]},
   { path: 'corsi-admin', component: CorsiAdminComponent, canActivate: [AdminGuard]},
+  { path: 'corsi-dettaglio', component: CorsiDettaglioComponent, canActivate: [AdminGuard]},
 
   {path: "", pathMatch: "full", redirectTo: "/home"}
 ];
