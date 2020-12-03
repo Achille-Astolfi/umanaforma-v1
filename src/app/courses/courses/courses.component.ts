@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Candidate } from 'src/app/resource/candidate';
 import { Course } from 'src/app/resource/course';
+import { TitleService } from 'src/app/service/title.service';
 import { UmanaFormaRestServiceService } from 'src/app/service/umana-forma-rest-service.service';
 
 @Component({
@@ -13,10 +14,12 @@ export class CoursesComponent implements OnInit {
   courseList = new Array<Course>();
 
   constructor(
-    private umanaFormaRestService: UmanaFormaRestServiceService
+    private umanaFormaRestService: UmanaFormaRestServiceService,
+    private titleService:TitleService
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setPage("Course List");
     this.umanaFormaRestService.getCourses().subscribe((answer) => this.getCoursesOk(answer),
       (error) => this.getCoursesKo(error));
   }

@@ -12,7 +12,7 @@ export class DashboardAdminComponent implements OnInit {
   constructor(private titleService:TitleService) { }
 
   ngOnInit(): void {
-    this.titleService.setPage("Dashboard Admin");
+    this.titleService.setPage("Home Admin");
   }
 
 }

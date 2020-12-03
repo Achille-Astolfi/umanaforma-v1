@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CandidatesRequest } from 'src/app/dto/candidates-request';
 import { SubscriptionRequest } from 'src/app/dto/subscription-request';
 import { TitleCourseService } from 'src/app/service/title-course.service';
+import { TitleService } from 'src/app/service/title.service';
 import { UmanaFormaRestServiceService } from 'src/app/service/umana-forma-rest-service.service';
 
 @Component({
@@ -21,10 +22,12 @@ export class AddCandidateComponent implements OnInit {
   constructor(
     public titleCourse: TitleCourseService,
     public umanaFormaRestService: UmanaFormaRestServiceService,
-    public router: Router
+    public router: Router,
+    private titleService:TitleService
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setPage("Registration");
   }
 
   addToForm(event: Event): void {

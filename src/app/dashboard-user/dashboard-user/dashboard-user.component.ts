@@ -11,7 +11,7 @@ export class DashboardUserComponent implements OnInit {
   constructor( private titleService:TitleService) { }
 
   ngOnInit(): void {
-    this.titleService.setPage("Dashboard User");
+    this.titleService.setPage("Home User");
   }
 
 }

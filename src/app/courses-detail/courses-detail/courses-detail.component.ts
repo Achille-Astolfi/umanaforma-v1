@@ -4,6 +4,7 @@ import { CoursesResponse } from 'src/app/dto/courses-response';
 import { Candidate } from 'src/app/resource/candidate';
 import { Course } from 'src/app/resource/course';
 import { TitleCourseService } from 'src/app/service/title-course.service';
+import { TitleService } from 'src/app/service/title.service';
 import { UmanaFormaRestServiceService } from 'src/app/service/umana-forma-rest-service.service';
 
 @Component({
@@ -17,10 +18,12 @@ export class CoursesDetailComponent implements OnInit {
 
   constructor(
     public titleCourse: TitleCourseService,
-    public umanaFormaRestService : UmanaFormaRestServiceService
+    public umanaFormaRestService : UmanaFormaRestServiceService,
+    private titleService:TitleService
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setPage("Course Detail");
     this.umanaFormaRestService.getCourseById(this.titleCourse.idCourse)
     .subscribe((answer) => this.getCoursesByIdOk(answer),
     (error) => this.getCoursesByIdKo(error));
