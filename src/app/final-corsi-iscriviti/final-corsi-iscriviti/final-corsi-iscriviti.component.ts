@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogRestService } from 'src/app/service/log-rest.service';
 import { Candidate } from 'src/app/resources/candidate';
+import { FormCandidate } from 'src/app/class/form-candidate';
 
 @Component({
   selector: 'app-final-corsi-iscriviti',
@@ -9,7 +10,7 @@ import { Candidate } from 'src/app/resources/candidate';
 })
 export class FinalCorsiIscrivitiComponent implements OnInit {
 
-  candidate!: Candidate;
+  candidate!: FormCandidate;
 
   constructor(private logRest: LogRestService) { }
 
@@ -17,10 +18,7 @@ export class FinalCorsiIscrivitiComponent implements OnInit {
   }
 
   annulla(event: Event):void{
-    //da sistemare
-    this.candidate.firstName = "";
-    this.candidate.lastName = "";
-    this.candidate.emailAddress = "";
+    this.candidate.clear();
   }
 
   iscriviti(event: Event): void{
