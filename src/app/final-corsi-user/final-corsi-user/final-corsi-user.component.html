@@ -3,10 +3,16 @@
     <div class="row">
       <div class="col" *ngFor="let course of courseList">
         <h5>{{course.id}}: {{course.description}}</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae modi neque dolores odit cumque
-          perferendis consequatur accusantium, ipsum labore consequuntur sit iste iusto explicabo obcaecati
-          perspiciatis cum. Ad, tempore aut.</p>
-        <button class="btn btn-primary" (click)="getTipoCorso($event, course)" routerLink="/corsi-iscriviti">Iscriviti</button>
+        <p>
+          Ricordati di indossare sempre la mascherina nei luoghi chiusi,
+          Lavati spesso le mani con acque e sapone, o usa un gel a base alcolica (da non bere),
+          Non toccati occhi, naso e bocca con le mani,
+          Evita contatti ravvicinati mantenendo la distanza di almeno un metro,
+          Evita le strette di mano e gli abbracci,
+          Evita luoghi affollati,
+          Se hai sintomi influenzali resta a casa.
+        </p>
+        <button id="iscriviti" class="btn btn-primary" (click)="getTipoCorso($event, course)" routerLink="/corsi-iscriviti">Iscriviti</button>
       </div>
     </div>
   </div>

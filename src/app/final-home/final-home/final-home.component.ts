@@ -14,6 +14,8 @@ export class FinalHomeComponent implements OnInit {
   message!: string;
   userAdmin!: boolean;
   person = new Person();
+  error = false;
+
   constructor(private logRest: LogRestService,private router:Router) { }
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class FinalHomeComponent implements OnInit {
   }
 
   private loginOk(answer:string):void{
+    this.error = false;
     this.message = answer;
     if(this.person.username === "user"){
       this.router.navigateByUrl("/dashboard-user");
@@ -34,8 +37,16 @@ export class FinalHomeComponent implements OnInit {
     }
   }
 
-  private loginNo(error: HttpErrorResponse):void{
+  private loginNo(error: HttpErrorResponse): void{
+    this.error=true;
+    alert("Username o password non corrispondono.");
+    this.person.username = "";
+    this.person.password = "";
     console.error(error);
   }
-  
+
+  annulla(event: Event): void{
+    this.person.username = "";
+    this.person.password = "";
+  }
 }

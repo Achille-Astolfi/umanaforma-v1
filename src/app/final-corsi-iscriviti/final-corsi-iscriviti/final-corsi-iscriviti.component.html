@@ -1,29 +1,44 @@
 <main>
     <div class="container">
         <h5>{{corso.id}}: {{corso.description}}</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae modi neque dolores odit cumque
-            perferendis consequatur accusantium, ipsum labore consequuntur sit iste iusto explicabo obcaecati
-            perspiciatis cum. Ad, tempore aut.</p>
+        <p>Non esiste altro Dio all'infuori di me,
+            Non nominare in nome di Dio invano,
+            Ricordati di santificare le feste,
+            Onora il padre e la madre,
+            Non uccidere,
+            "Non" commettere atti impuri,
+            Non rubare,
+            Non dire falsa testimonianza,
+            Non desiderare la roba d'altri,
+            Non desiderare la donna d'altri.
+        </p>
         <form>
             <div class="form-group">
                 <label for="first">Nome</label>
-                <input type="text" class="form-control" id="first" name="first" [(ngModel)]="candidate.firstName"
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': errorFirstName}" id="first" name="first" [(ngModel)]="candidate.firstName"
                     placeholder="il tuo nome">
             </div>
             <div class="form-group">
                 <label for="last">Cognome</label>
-                <input type="text" class="form-control" id="last" name="last" [(ngModel)]="candidate.lastName"
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': errorLastName}" id="last" name="last" [(ngModel)]="candidate.lastName"
                     placeholder="il tuo cognome">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="candidate.emailAddress"
+                <input type="email" class="form-control" [ngClass]="{'is-invalid': errorEmailAddress}" id="email" name="email"  [(ngModel)]="candidate.emailAddress"
                     placeholder="la tua email" aria-describedby="emailHelp">
                 <small id="emailHelp" class="form-text text-muted">Non la condivideremo con nessuno.</small>
             </div>
             <button type="button" class="btn btn-secondary" (click)="annulla($event)">Annulla</button>
             &nbsp;
-            <button type="button" class="btn btn-primary" (click)="iscriviti($event)" routerLink="/corsi-grazie">Iscriviti</button>
+            <button id="iscriviti" type="button" class="btn btn-primary" (click)="iscriviti($event)" href="#">Iscriviti</button>
+            <br>
+            <div class="alert alert-danger" role="alert" *ngIf="errorFirstName || errorLastName || errorEmailAddress">
+                Credenziali errate.
+                <button type="button" class="close" aria-label="Chiudi">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </form>
     </div>
 </main>
