@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CandidatiComponent } from './candidati/candidati.module';
 import { CorsiAdminComponent, CorsiAdminModule } from './corsi-admin/corsi-admin.module';
 import { CorsiDettaglioComponent } from './corsi-dettaglio/corsi-dettaglio/corsi-dettaglio.component';
 import { CorsiGrazieComponent } from './corsi-grazie/corsi-grazie.module';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'dashboard-admin', component: DashboardAdminComponent, canActivate: [AdminGuard]},
   { path: 'corsi-admin', component: CorsiAdminComponent, canActivate: [AdminGuard]},
   { path: 'corsi-dettaglio', component: CorsiDettaglioComponent, canActivate: [AdminGuard]},
+  { path: 'candidati', component: CandidatiComponent, canActivate: [AdminGuard]},
 
   {path: "", pathMatch: "full", redirectTo: "/home"}
 ];

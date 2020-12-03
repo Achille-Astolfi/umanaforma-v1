@@ -17,6 +17,7 @@ import { CorsiGrazieModule } from './corsi-grazie/corsi-grazie.module';
 import { FooterComponent } from './footer/footer.component';
 import { CorsiAdminModule } from './corsi-admin/corsi-admin.module';
 import { CorsiDettaglioModule } from './corsi-dettaglio/corsi-dettaglio.module';
+import { CandidatiModule } from './candidati/candidati.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CorsiDettaglioModule } from './corsi-dettaglio/corsi-dettaglio.module';
     DashboardAdminModule,
     CorsiAdminModule,
     CorsiDettaglioModule,
+    CandidatiModule,
     SampleModule,
     AppRoutingModule,
   ],

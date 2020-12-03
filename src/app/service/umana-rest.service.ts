@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { TokenRequestSubscription } from '../dto/token-request-subscription';
 import { Candidate } from '../resource/candidate';
 import { CandidatesResponse } from '../dto/candidates-response';
+import { ElencoCandidatiResponse } from '../dto/elenco-candidati-response';
 
 const url = "/api";
 
@@ -143,12 +144,26 @@ export class UmanaRestService {
     let response = this.http.get<CandidatesResponse>(url + "/courses/" + this.currentCourseId, { headers });
     return response.pipe(map((answer) => this.getCandidatesMap(answer)));
   }
-  
+
   private getCandidatesMap(answer: CandidatesResponse): Candidate[] {
     let candidates = new Array<Candidate>();
     answer.subscriptions.forEach(element => {
       candidates.push(element.candidate);
     }); 
     return candidates;
+  }
+
+  getElencoCandidati(): Observable<Candidate[]> {
+    if (this.token === undefined) {
+      console.log("from");
+      return from([]);
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+    let response = this.http.get<ElencoCandidatiResponse>(url + "/candidates", { headers });
+    return response.pipe(map((answer) => this.getElencoCandidatiMap(answer)));
+  }
+
+  private getElencoCandidatiMap(answer: ElencoCandidatiResponse): Candidate[] {
+    return answer._embedded.candidates;
   }
 }
