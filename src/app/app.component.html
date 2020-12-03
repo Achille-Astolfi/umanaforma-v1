@@ -18,7 +18,7 @@
             <a class="nav-link" routerLink="course-list">Corsi</a>
           </li>
           <li class="nav-item" *ngIf="umanaFormaRestService.isAdmin()">
-            <a class="nav-link" routerLink="candidati">Candidati</a>
+            <a class="nav-link" routerLink="candidate-list">Candidati</a>
           </li>
         </ul>
         <ul class="navbar-nav">
@@ -46,7 +46,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" (click)="utente.clear()">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" (click)="clearAll()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="utente.clear()">Annulla</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearAll()">Annulla</button>
             <button type="submit" class="btn btn-primary" (click)="doLogin($event)">Login</button>
           </div>
         </form>

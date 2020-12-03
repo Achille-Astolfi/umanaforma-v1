@@ -14,6 +14,9 @@ export class AppComponent {
   private password !: string;
   utente = new LoginFormClass();
 
+  private bkUser !: string;
+  private bkPassword !: string;
+
   message?: string;
 
   constructor(private router: Router, public umanaFormaRestService: UmanaFormaRestServiceService) { }
@@ -23,6 +26,10 @@ export class AppComponent {
   }
 
   doLogin(event: Event): void {
+    this.utente.username = this.utente.username.split(' ').join('');
+    this.bkUser = this.utente.username;
+    this.bkPassword = this.utente.password;
+    //console.log("User: " + this.bkUser + " Password: " + this.bkPassword);
     this.loginVerified();
   }
 
@@ -30,30 +37,35 @@ export class AppComponent {
     this.message = answer;
     this.router.navigateByUrl(this.userDashboardChoise());
     (window as any)["$"]('#staticBackdrop').modal('hide');
-    this.umanaFormaRestService.userLogged = this.utente.username;
-    this.umanaFormaRestService.logged = false;
+    this.umanaFormaRestService.userLogged = this.bkUser;
+    this.umanaFormaRestService.logged = false; //non capisco il significato
     //this.utente.clear();
   }
 
   private loginKo(error: HttpErrorResponse): void {
-    alert("Errore nel login: " + error);
-    console.log("Valori Errati!");
     this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
-    this.utente.clear();
+    //alert("Errore nel login");
+    console.log("Valori Errati!");
+    
   }
 
   private loginVerified(): void {
-    let response = this.umanaFormaRestService.login(this.utente.username, this.utente.password);
+    let response = this.umanaFormaRestService.login(this.bkUser, this.bkPassword);
     response.subscribe((answer) => this.loginOk(answer), (error) => this.loginKo(error));
+    this.clearAll(); 
   }
 
   userDashboardChoise(): string {
-    if(this.utente.username === "user") {
+    if (this.bkUser === "user") {
       return "/dashboard-user";
     } else {
       return "/dashboard-admin";
     }
-    
+  }
+
+  clearAll(): void {
+    this.utente.clear();
+    this.umanaFormaRestService.errorMessage = "";
   }
 
 }

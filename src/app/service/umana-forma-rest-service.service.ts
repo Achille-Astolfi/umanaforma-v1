@@ -48,7 +48,7 @@ export class UmanaFormaRestServiceService {
     this.token = answer.authentication.token_type + ' ' + answer.authentication.access_token;
 
     console.log(this.token);
-    return "Un saluto dal gruppo 1";
+    return "Login done";
   }
 
   isLogged(): boolean {
