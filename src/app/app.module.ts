@@ -11,10 +11,18 @@ import { FormsModule } from '@angular/forms';
 import { FinalDashboardModule } from './final-dashboard/final-dashboard.module';
 import { FinalCorsiIscrivitiModule } from './final-corsi-iscriviti/final-corsi-iscriviti.module';
 import { FinalCorsiUserModule } from './final-corsi-user/final-corsi-user.module';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { FinalCorsiGrazieModule } from './final-corsi-grazie/final-corsi-grazie.module';
+import { FinalCorsiAdminModule } from './final-corsi-admin/final-corsi-admin.module';
+import { FinalCorsiDettaglioModule } from './final-corsi-dettaglio/final-corsi-dettaglio.module';
+import { FinalCandidatiModule } from './final-candidati/final-candidati.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +33,11 @@ import { FinalCorsiUserModule } from './final-corsi-user/final-corsi-user.module
     FormsModule,
     FinalDashboardModule,
     FinalCorsiIscrivitiModule,
-    FinalCorsiUserModule
+    FinalCorsiUserModule,
+    FinalCorsiGrazieModule,
+    FinalCorsiAdminModule,
+    FinalCorsiDettaglioModule,
+    FinalCandidatiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

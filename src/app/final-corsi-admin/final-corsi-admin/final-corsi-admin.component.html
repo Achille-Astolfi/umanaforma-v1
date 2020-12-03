@@ -1,0 +1,13 @@
+<main>
+    <div class="container">
+      <div class="row">
+        <div class="col"  *ngFor="let course of courseList">
+          <h5>{{course.id}}: {{course.description}}</h5>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae modi neque dolores odit cumque
+            perferendis consequatur accusantium, ipsum labore consequuntur sit iste iusto explicabo obcaecati
+            perspiciatis cum. Ad, tempore aut.</p>
+          <button class="btn btn-primary" (click)="getCandidate($event, course)">Dettaglio</button>
+        </div>
+      </div>
+    </div>
+  </main>

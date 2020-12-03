@@ -1,0 +1,8 @@
+<main>
+    <div class="container">
+        <h4>Elenco dei candidati</h4>
+        <div class="btn-group" role="group" aria-label="Elenco dei candidati">
+        <button type="button" class="btn btn-secondary" *ngFor="let candidate of candidateListTot">{{candidate.firstName}} {{candidate.lastName}}</button>
+        </div>
+    </div>
+</main>

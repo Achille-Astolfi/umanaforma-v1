@@ -20,7 +20,6 @@ export class FinalCorsiUserComponent implements OnInit {
   }
 
   private getCourseOk(answer: Course[]):void{
-    console.log("ANDATA BENE");
     this.courseList = answer;
   }
 
@@ -28,4 +27,7 @@ export class FinalCorsiUserComponent implements OnInit {
     console.error(error);
   }
 
+  getTipoCorso(event: Event, course: Course): void{
+    this.logRest.corso = course;
+  }
 }

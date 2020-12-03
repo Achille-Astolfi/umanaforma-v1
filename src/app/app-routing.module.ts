@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FinalCandidatiComponent } from './final-candidati/final-candidati/final-candidati.component';
+import { FinalCorsiAdminComponent } from './final-corsi-admin/final-corsi-admin/final-corsi-admin.component';
+import { FinalCorsiDettaglioComponent } from './final-corsi-dettaglio/final-corsi-dettaglio/final-corsi-dettaglio.component';
+import { FinalCorsiGrazieComponent } from './final-corsi-grazie/final-corsi-grazie/final-corsi-grazie.component';
 import { FinalCorsiIscrivitiComponent } from './final-corsi-iscriviti/final-corsi-iscriviti/final-corsi-iscriviti.component';
 import { FinalCorsiUserComponent } from './final-corsi-user/final-corsi-user/final-corsi-user.component';
 import { FinalDashboardAdminComponent } from './final-dashboard/final-dashboard-admin/final-dashboard-admin.component';
@@ -15,7 +19,10 @@ const routes: Routes = [
   { path: "dashboard-admin", component: FinalDashboardAdminComponent, canActivate:[GuardAdminGuard] },
   { path: "corsi-user", component: FinalCorsiUserComponent, canActivate:[GuardUserGuard] },
   { path: "corsi-iscriviti", component: FinalCorsiIscrivitiComponent, canActivate:[GuardUserGuard] },
-
+  { path: "corsi-grazie", component: FinalCorsiGrazieComponent, canActivate:[GuardUserGuard] },
+  { path: "corsi-admin", component: FinalCorsiAdminComponent, canActivate:[GuardAdminGuard] },
+  { path: "corsi-dettaglio", component: FinalCorsiDettaglioComponent, canActivate:[GuardAdminGuard] },
+  { path: "candidati", component: FinalCandidatiComponent, canActivate:[GuardAdminGuard] },
   { path: "", pathMatch: "full", redirectTo: "/home" }
 ];
 

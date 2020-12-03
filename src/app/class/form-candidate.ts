@@ -1,8 +1,8 @@
 export class FormCandidate {
     id?: number;
-    firstName = "";
-    lastName = "";
-    emailAddress = "";
+    firstName!: string;
+    lastName!: string;
+    emailAddress!: string;
 
     clear(): void{
         this.firstName = "";
