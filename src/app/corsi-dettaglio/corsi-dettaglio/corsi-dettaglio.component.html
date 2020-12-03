@@ -1,12 +1,11 @@
 <main>
 <div class="container">
-    <h5>Titolo corso 2</h5>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quia, consectetur omnis nulla cum
-    rerum nihil fugiat totam temporibus explicabo id aliquam maxime perferendis, ab quidem facilis
-    eligendi est similique.</p>
+    <div *ngIf="course!==undefined">
+        <p>Id: {{ course.id }}</p>
+        <p>Descrizione: {{ course.description }}</p>
+    </div>
     <div class="btn-group-vertical" role="group" aria-label="Elenco dei candidati">
-    <button type="button" class="btn btn-secondary">Mario Rossi</button>
-    <button type="button" class="btn btn-secondary">Angelica Russo</button>
+    <app-corsi-dettaglio-item *ngFor="let candidate of candidateList" [candidate]="candidate"></app-corsi-dettaglio-item>
     </div>
 </div>
 </main>

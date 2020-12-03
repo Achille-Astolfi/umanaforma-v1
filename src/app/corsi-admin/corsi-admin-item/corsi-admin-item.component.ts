@@ -19,6 +19,7 @@ export class CorsiAdminItemComponent implements OnInit {
   }
 
   doDettaglio(event: Event): void {
+    this.umanaRestService.getCourseId(this.course.id);
     this.router.navigateByUrl('/corsi-dettaglio');
   }
 

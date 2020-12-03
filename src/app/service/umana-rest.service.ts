@@ -9,6 +9,8 @@ import { CoursesResponse } from '../dto/courses-response';
 import { TokenRequestIscrizione } from '../dto/token-request-iscrizione';
 import { Router } from '@angular/router';
 import { TokenRequestSubscription } from '../dto/token-request-subscription';
+import { Candidate } from '../resource/candidate';
+import { CandidatesResponse } from '../dto/candidates-response';
 
 const url = "/api";
 
@@ -57,6 +59,7 @@ export class UmanaRestService {
   logout(): Observable<string> {
     this.roles = [];
     this.token = undefined;
+    this.currentCourseId = NaN;
     this.router.navigateByUrl("/home");
     return from(["Logout effettuato correttamente."]);
   }
@@ -126,7 +129,26 @@ export class UmanaRestService {
   }
 
   private subscriptionMap(answer: HttpResponse<null>): string {
-    console.log(answer);
     return "Sottoscrizione effettuata.";
+  }
+
+  //CANDIDATI
+
+  getCandidates(): Observable<Candidate[]> {
+    if (this.token === undefined) {
+      console.log("from");
+      return from([]);
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+    let response = this.http.get<CandidatesResponse>(url + "/courses/" + this.currentCourseId, { headers });
+    return response.pipe(map((answer) => this.getCandidatesMap(answer)));
+  }
+  
+  private getCandidatesMap(answer: CandidatesResponse): Candidate[] {
+    let candidates = new Array<Candidate>();
+    answer.subscriptions.forEach(element => {
+      candidates.push(element.candidate);
+    }); 
+    return candidates;
   }
 }

@@ -1,4 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Candidate } from 'src/app/resource/candidate';
+import { Course } from 'src/app/resource/course';
+import { UmanaRestService } from 'src/app/service/umana-rest.service';
 
 @Component({
   selector: 'app-corsi-dettaglio',
@@ -7,9 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CorsiDettaglioComponent implements OnInit {
 
-  constructor() { }
+  course!: Course;
+  candidateList!: Candidate[];
+
+  constructor(private umanaRestService: UmanaRestService) { }
 
   ngOnInit(): void {
+    this.umanaRestService.getCourseById(this.umanaRestService.currentCourseId)
+    .subscribe((answer) => this.getCourseOk(answer), (error) => this.getCourseKo(error));
   }
 
+  private getCourseOk(answer: Course): void {
+    this.course = answer;
+    this.umanaRestService.getCandidates()
+    .subscribe((answer) => this.getCandidatesOk(answer), (error) => this.getCandidatesKo(error));
+  }
+
+  private getCourseKo(error: HttpErrorResponse): void {
+    console.error(error);
+  }
+
+  private getCandidatesOk(answer: Candidate[]): void {
+    this.candidateList = answer;
+  }
+
+  private getCandidatesKo(error: HttpErrorResponse): void {
+    console.error(error);
+  }
 }

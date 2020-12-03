@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { CorsiGrazieModule } from './corsi-grazie/corsi-grazie.module';
 import { FooterComponent } from './footer/footer.component';
 import { CorsiAdminModule } from './corsi-admin/corsi-admin.module';
+import { CorsiDettaglioModule } from './corsi-dettaglio/corsi-dettaglio.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CorsiAdminModule } from './corsi-admin/corsi-admin.module';
     CorsiGrazieModule,
     DashboardAdminModule,
     CorsiAdminModule,
+    CorsiDettaglioModule,
     SampleModule,
     AppRoutingModule,
   ],
