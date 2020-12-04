@@ -1,10 +1,11 @@
 <div *ngIf="!displayingSample()">
-  <!-- put header stuff here -->
   <app-header></app-header>
 </div>
+
 <router-outlet></router-outlet>
+
 <div *ngIf="!displayingSample()">
-  <!-- put footer stuff here -->
   <app-footer></app-footer>
 </div>
+
 <p>Lo stato del server è: {{describeAlive()}}</p>

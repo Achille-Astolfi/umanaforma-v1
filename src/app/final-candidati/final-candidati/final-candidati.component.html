@@ -2,7 +2,7 @@
     <div class="container">
         <h4>Elenco dei candidati</h4>
         <div class="btn-group" role="group" aria-label="Elenco dei candidati">
-        <button type="button" class="btn btn-secondary" *ngFor="let candidate of candidateListTot" (click)="viewCourses($event, candidate)">{{candidate.firstName}} {{candidate.lastName}}</button>
+        <button type="button" class="active" *ngFor="let candidate of candidateListTot" (click)="viewCourses($event, candidate)">{{candidate.firstName}} {{candidate.lastName}}</button>
         </div>
     </div>
 </main>

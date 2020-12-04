@@ -1,52 +1,16 @@
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" [ngClass]="{'is-invalid': error}" id="username" name="username" [(ngModel)]="person.username"
-                 placeholder="user o admin">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" [ngClass]="{'is-invalid': error}" id="password" name="password" [(ngModel)]="person.password" placeholder="password">
-            </div>
-            <div class="alert alert-danger" role="alert" *ngIf="error">
-              Username o password non sono corretti.
-              <button type="button" class="close" aria-label="Chiudi">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="annulla($event)">Annulla</button>
-          <button id="login" type="button" class="btn btn-primary" (click)="doLogin($event)">Login</button>
-        </div>
-      </div>
-    </div>
+<main>
+  <div class="container">
+    <h1>Umana Forma</h1>
+    <p>Questa pagina è il punto di partenza per accedere alle informazioni relative a Umana Forma.</p>
+    <p>E'possibile consultare le informazioni dei singoli corsi (User e Admin) e dei candidati (solo Admin).</p>
+    <p>Dall'8 Giugno 2020 sono aperte le immatricolazioni ai corsi per l'anno accademico 2020/2021.</p>
+    <p>Per iniziare la procedura di registrazione devi prima accedere cliccando sull'omino in testa alla pagina</p>
+    <p>e accedere come user. Bastano 2 minuti e pochissimi click.</p>
+    <br>
+    <ul>Gruppo 3
+      <li>Delerci Denis</li>
+      <li>Messina Michele</li>
+      <li>Pino Pietro</li>
+    </ul>
   </div>
-  <main>
-    <div class="container">
-      <h1>Umana Forma</h1>
-      <p>Questa pagina è il punto di partenza per accedere alle informazioni relative a Umana Forma.</p>
-      <p>E'possibile consultare le informazioni dei singoli corsi (User e Admin) e dei candidati (solo Admin).</p>
-      <p>Dall'8 Giugno 2020 sono aperte le immatricolazioni ai corsi per l'anno accademico 2020/2021.</p>
-      <p>Per iniziare la procedura di registrazione devi prima accedere cliccando sull'omino in testa alla pagina</p>
-      <p>e accedere come user. Bastano 2 minuti e pochissimi click.</p>
-      <br>
-      <ul>Gruppo 3
-        <li>Delerci Denis</li>
-        <li>Messina Michele</li>
-        <li>Pino Pietro</li>
-      </ul>
-    </div>
-  </main>
+</main>
