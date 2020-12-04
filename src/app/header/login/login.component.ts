@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoginFormTemplate } from 'src/app/model/login-form-template';
 import { UmanaRestService } from 'src/app/service/umana-rest.service';
 
+const $ = (window as any)["$"];
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,6 +13,7 @@ import { UmanaRestService } from 'src/app/service/umana-rest.service';
 })
 export class LoginComponent implements OnInit {
   formTemplate = new LoginFormTemplate();
+  error = false;
 
   constructor(
     private umanaRestService: UmanaRestService,
@@ -18,14 +21,21 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    $('#staticBackdrop').on('show.bs.modal', () => this.clear());
+  }
+
+  clear() {
+    $('#username').val('')
+    $('#password').val('')
+    this.formTemplate.clear();
   }
 
   doLogin(event: Event): void {
     let response = this.umanaRestService.login(this.formTemplate.username, this.formTemplate.password);
     response.subscribe((answer) => this.doLoginOk(answer), (error) => this.doLoginKo(error));
-    (window as any)["$"]('#staticBackdrop').modal('hide');
   }
   private doLoginOk(answer: string): void {
+    $('#staticBackdrop').modal('hide');
     console.log(answer);
     if (this.umanaRestService.isAdmin()) {
       this.router.navigateByUrl("/dashboard-admin");
@@ -34,6 +44,8 @@ export class LoginComponent implements OnInit {
     }
   }
   private doLoginKo(error: HttpErrorResponse): void {
+    this.error = true;
     console.error(error);
+    setTimeout(() => this.error = false, 5000);
   }
 }

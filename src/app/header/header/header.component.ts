@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UmanaRestService } from 'src/app/service/umana-rest.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { UmanaRestService } from 'src/app/service/umana-rest.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private umanaRestService: UmanaRestService
+    private umanaRestService: UmanaRestService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -19,4 +21,18 @@ export class HeaderComponent implements OnInit {
     return this.umanaRestService.username;
   }
 
+  homeLink(): string {
+    if (this.umanaRestService.isAdmin()) {
+      return "/dashboard-admin";
+    } else if (this.umanaRestService.isUser()) {
+      return "/dashboard-user";
+    } else {
+      return "/home";
+    }
+  }
+
+  doLogout(event: Event): void {
+    this.umanaRestService.logout();
+    this.router.navigateByUrl("/home");
+  }
 }

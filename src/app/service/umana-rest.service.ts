@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -34,7 +34,7 @@ export class UmanaRestService {
     return this.username;
   }
 
-  isUser():boolean {
+  isUser(): boolean {
     return this.roles.indexOf("USER") >= 0;
   }
   isAdmin(): boolean {
@@ -42,5 +42,25 @@ export class UmanaRestService {
   }
   isSimpleUser(): boolean {
     return this.isUser() && !this.isAdmin();
+  }
+  logout(): void {
+    this.username = undefined;
+    this.token = undefined;
+    this.roles = [];
+  }
+  prova(): void {
+    if (this.token === undefined) return;
+    let request = {
+      "firstName": "Eliana",
+      "lastName": "Esposito",
+      "emailAddress": "eliana.esposito@example.com"
+    };
+    let headers = new HttpHeaders({ authorization: this.token });
+    let response = this.http.post<null>(url + "/candidates", request, { headers, observe: "response" })
+      .subscribe(answer => this.provaOk(answer), error => console.log(error));
+  }
+  private provaOk(answer: HttpResponse<null>) {
+    console.log(answer);
+    console.log(answer.headers.get("location"));
   }
 }

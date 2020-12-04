@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UmanaRestService } from 'src/app/service/umana-rest.service';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private umanaRestService: UmanaRestService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  prova(): void {
+    this.umanaRestService.prova();
   }
 
 }
