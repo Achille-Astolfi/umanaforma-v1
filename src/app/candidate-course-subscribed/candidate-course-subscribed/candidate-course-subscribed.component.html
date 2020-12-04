@@ -1,0 +1,9 @@
+<main>
+    <div class="container">
+        <h4>Elenco dei corsi di {{titleCourse.nameCandidate}} {{titleCourse.surnameCandidate}}</h4>
+        <div role="group" aria-label="Elenco dei corsi per cadidato"
+            *ngFor="let candidateCourse of candidateCourseList">
+            <p>{{candidateCourse.description}}</p>
+        </div>
+    </div>
+</main>

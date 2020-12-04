@@ -7,6 +7,9 @@ export class TitleCourseService {
 
   titleCourse?: string;
   idCourse!: number;
+  idCandidate!: number;
+  nameCandidate!: string;
+  surnameCandidate!: string;
 
   constructor() { }
 
@@ -16,6 +19,18 @@ export class TitleCourseService {
 
   setIdCourse(idCourse: number){
     this.idCourse = idCourse;
+  }
+
+  setIdCandidate(idCandidate: number){
+    this.idCandidate = idCandidate;
+  }
+
+  setNameCandidate(nameCandidate: string){
+    this.nameCandidate = nameCandidate;
+  }
+
+  setSurnameCandidate(surnameCandidate: string){
+    this.surnameCandidate = surnameCandidate;
   }
 
 }

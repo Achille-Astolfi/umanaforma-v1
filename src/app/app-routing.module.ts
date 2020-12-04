@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddCandidateComponent } from './add-candidate/add-candidate.module';
 import { HomeComponent } from './application/home.module';
+import { CandidateCourseSubscribedComponent } from './candidate-course-subscribed/candidate-course-subscribed.module';
 import { CandidatesComponent } from './candidates/candidates.module';
 import { CorsiGrazieComponent } from './corsi-grazie/corsi-grazie.module';
 import { CoursesDetailComponent } from './courses-detail/courses-detail.module';
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: "corsi-grazie", component: CorsiGrazieComponent, canActivate: [TypeLoggedUserGuard] },
   { path: "corsi-dettaglio", component: CoursesDetailComponent, canActivate: [TypeLoggedAdminGuard] },
   { path: "candidates", component: CandidatesComponent, canActivate: [TypeLoggedAdminGuard] },
-  { path: "forbidden", component: ForbiddenComponent },
+  { path: "candidate-courses", component: CandidateCourseSubscribedComponent, canActivate: [TypeLoggedAdminGuard]},
+  { path: "forbidden", component: ForbiddenComponent },  
   { path: "", pathMatch: "full", redirectTo: "/home" },
   { path: "**", pathMatch: "prefix", component: NotFoundComponent }
 
