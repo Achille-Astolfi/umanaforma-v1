@@ -7,15 +7,15 @@
         <form ngNativeValidate (submit)="addToForm($event)">
             <div class="form-group">
                 <label for="first">Nome</label>
-                <input type="text" class="form-control" id="first" placeholder="il tuo nome" [(ngModel)]="nome" [ngModelOptions]="{standalone: true}" required autofocus>
+                <input type="text" class="form-control" id="first" placeholder="Name" [(ngModel)]="nome" [ngModelOptions]="{standalone: true}" required autofocus>
             </div>
             <div class="form-group">
                 <label for="last">Cognome</label>
-                <input type="text" class="form-control" id="last" placeholder="il tuo cognome" [(ngModel)]="cognome" [ngModelOptions]="{standalone: true}" required>
+                <input type="text" class="form-control" id="last" placeholder="Surname" [(ngModel)]="cognome" [ngModelOptions]="{standalone: true}" required>
             </div>
             <div class="form-group">
                 <label for="last">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="la tua email" aria-describedby="emailHelp" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required> 
+                <input type="email" class="form-control" id="email" placeholder="Email Address" aria-describedby="emailHelp" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required> 
                 <small id="emailHelp" class="form-text text-muted">Non la condivideremo con nessuno.</small>
             </div>
             <button type="button" class="btn btn-secondary" (click)="annulla($event)">Annulla</button>

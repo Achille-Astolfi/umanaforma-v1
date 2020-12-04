@@ -65,13 +65,13 @@
             <div class="form-group">
               <label for="username">Username</label>
               <input [ngClass]="{'is-invalid': umanaFormaRestService.errorMessage}" type="text" class="form-control"
-                id="username" placeholder="user o admin" [(ngModel)]="utente.username"
+                id="username" placeholder="Username" [(ngModel)]="utente.username"
                 [ngModelOptions]="{standalone: true}" autocomplete="off" required autofocus tabindex="-1">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
               <input [ngClass]="{'is-invalid': umanaFormaRestService.errorMessage}" type="password" class="form-control"
-                id="password" placeholder="password" [(ngModel)]="utente.password" [ngModelOptions]="{standalone: true}"
+                id="password" placeholder="Password" [(ngModel)]="utente.password" [ngModelOptions]="{standalone: true}"
                 autocomplete="off" required>
             </div>
             <div *ngIf="!umanaFormaRestService.isLogged()">
