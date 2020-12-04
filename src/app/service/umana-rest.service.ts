@@ -30,6 +30,8 @@ export class UmanaRestService {
 
   currentCourseId!: number;
 
+  currentCandidateId!: number;
+
   //LOGIN
 
   login(username: string, password: string): Observable<string> {
@@ -172,5 +174,18 @@ export class UmanaRestService {
 
   private getElencoCandidatiMap(answer: ElencoCandidatiResponse): Candidate[] {
     return answer._embedded.candidates;
+  }
+
+  getCandidateById(id: number): Observable<Candidate> {
+    if (this.token === undefined) {
+      return from([]);
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+    let response = this.http.get<Candidate>(url + "/candidates/" + id, {headers});
+    return response;
+  }
+
+  getCandidateId(id: number): void {
+    this.currentCandidateId = id;
   }
 }

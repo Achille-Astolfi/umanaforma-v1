@@ -18,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CorsiAdminModule } from './corsi-admin/corsi-admin.module';
 import { CorsiDettaglioModule } from './corsi-dettaglio/corsi-dettaglio.module';
 import { CandidatiModule } from './candidati/candidati.module';
+import { CandidatiDettaglioModule } from './candidati-dettaglio/candidati-dettaglio.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CandidatiModule } from './candidati/candidati.module';
     CorsiAdminModule,
     CorsiDettaglioModule,
     CandidatiModule,
+    CandidatiDettaglioModule,
     SampleModule,
     AppRoutingModule,
   ],

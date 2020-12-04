@@ -1,0 +1,13 @@
+<main>
+    <div class="container">
+        <div *ngIf="currentCandidate!==undefined">
+            <h5>{{ currentCandidate.firstName }} {{currentCandidate.lastName}}</h5>
+            <p>Id: {{ currentCandidate.id }}</p>
+            <p>Email: {{ currentCandidate.emailAddress }}</p>
+        </div>
+        <div>
+            <h5>Corsi frequentati</h5>
+            <app-candidati-dettaglio-item *ngFor="let course of courseListIscritto" [course]="course"></app-candidati-dettaglio-item>
+        </div>
+    </div>
+</main>

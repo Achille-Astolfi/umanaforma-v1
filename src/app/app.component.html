@@ -1,9 +1,11 @@
 <div *ngIf="!displayingSample()">
   <!-- put header stuff here -->
+  <app-header ></app-header>
 </div>
-<app-header ></app-header>
+
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+
 <div *ngIf="!displayingSample()">
   <!-- put footer stuff here -->
+  <app-footer></app-footer>
 </div>

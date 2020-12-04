@@ -14,6 +14,7 @@ export class CorsiIscrivitiComponent implements OnInit {
   person = new TokenRequestIscrizione();
   course!: Course;
   router: any;
+  error = false;
 
   constructor(private umanaRestService: UmanaRestService, router: Router) {
     this.router = router;
@@ -36,7 +37,12 @@ export class CorsiIscrivitiComponent implements OnInit {
   }
 
   private registerKo(error: HttpErrorResponse): void {
+    this.error = true;
     console.error(error);
+    //spegnimento errore
+    setTimeout(() => {
+      this.error = false;
+    }, 4000);
   }
 
   private subscriptionOk(answer: string): void {

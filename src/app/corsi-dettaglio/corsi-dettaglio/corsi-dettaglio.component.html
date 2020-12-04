@@ -1,8 +1,8 @@
 <main>
 <div class="container">
     <div *ngIf="course!==undefined">
-        <p>Id: {{ course.id }}</p>
-        <p>Descrizione: {{ course.description }}</p>
+        <h5>{{ course.description }}</h5>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae ratione dolore enim sunt fugiat. Dolores dicta tenetur porro dolorum atque totam quisquam aspernatur eius aliquid ipsa facere ad, illum magnam?</p>
     </div>
     <div class="btn-group-vertical" role="group" aria-label="Elenco dei candidati">
     <app-corsi-dettaglio-item *ngFor="let candidate of candidateList" [candidate]="candidate"></app-corsi-dettaglio-item>
