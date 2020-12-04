@@ -46,6 +46,7 @@ export class AppComponent {
 
   private loginKo(error: HttpErrorResponse): void {
     this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
+    this.utente.clear();
   }
 
   private loginVerified(): void {

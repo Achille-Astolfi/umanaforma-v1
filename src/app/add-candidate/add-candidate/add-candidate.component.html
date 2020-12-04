@@ -7,7 +7,7 @@
         <form ngNativeValidate (submit)="addToForm($event)">
             <div class="form-group">
                 <label for="first">Nome</label>
-                <input type="text" class="form-control" id="first" placeholder="il tuo nome" [(ngModel)]="nome" [ngModelOptions]="{standalone: true}" required>
+                <input type="text" class="form-control" id="first" placeholder="il tuo nome" [(ngModel)]="nome" [ngModelOptions]="{standalone: true}" required autofocus>
             </div>
             <div class="form-group">
                 <label for="last">Cognome</label>

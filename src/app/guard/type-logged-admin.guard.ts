@@ -6,22 +6,21 @@ import { UmanaFormaRestServiceService } from '../service/umana-forma-rest-servic
 @Injectable({
   providedIn: 'root'
 })
-export class TypeLoggedUserGuard implements CanActivate {
+export class TypeLoggedAdminGuard implements CanActivate {
+
   constructor(
     private umanaFormaRestService : UmanaFormaRestServiceService,
     private router: Router
-    ) {
+    ) {}
 
-  }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-    if(this.umanaFormaRestService.isUser()) {
-      return true;
-    } else {
-      return this.router.parseUrl("/forbidden");
-    }
+      if(this.umanaFormaRestService.isAdmin()) {
+        return true;
+      } else {
+        return this.router.parseUrl("/forbidden");
+      }
   }
   
 }

@@ -8,18 +8,22 @@ import { CoursesDetailComponent } from './courses-detail/courses-detail.module';
 import { CoursesComponent } from './courses/courses.module';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.module';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.module';
+import { ForbiddenComponent } from './forbidden/forbidden.module';
+import { IsLoggedGuard } from './guard/is-logged.guard';
+import { TypeLoggedAdminGuard } from './guard/type-logged-admin.guard';
 import { TypeLoggedUserGuard } from './guard/type-logged-user.guard';
 import { NotFoundComponent } from './not-found/not-found.module';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "dashboard-user", component: DashboardUserComponent, canActivate: [TypeLoggedUserGuard] },
-  { path: "dashboard-admin", component: DashboardAdminComponent, canActivate: [TypeLoggedUserGuard] },
-  { path: "course-list", component: CoursesComponent },
-  { path: "add-candidate", component: AddCandidateComponent },
-  { path: "corsi-grazie", component: CorsiGrazieComponent },
-  { path: "corsi-dettaglio", component: CoursesDetailComponent },
-  { path: "candidates", component: CandidatesComponent },
+  { path: "dashboard-admin", component: DashboardAdminComponent, canActivate: [TypeLoggedAdminGuard] },
+  { path: "course-list", component: CoursesComponent, canActivate: [IsLoggedGuard] },
+  { path: "add-candidate", component: AddCandidateComponent, canActivate: [TypeLoggedUserGuard] },
+  { path: "corsi-grazie", component: CorsiGrazieComponent, canActivate: [TypeLoggedUserGuard] },
+  { path: "corsi-dettaglio", component: CoursesDetailComponent, canActivate: [TypeLoggedAdminGuard] },
+  { path: "candidates", component: CandidatesComponent, canActivate: [TypeLoggedAdminGuard] },
+  { path: "forbidden", component: ForbiddenComponent },
   { path: "", pathMatch: "full", redirectTo: "/home" },
   { path: "**", pathMatch: "prefix", component: NotFoundComponent }
 
