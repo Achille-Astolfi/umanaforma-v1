@@ -19,6 +19,8 @@ export class AddCandidateComponent implements OnInit {
   cognome!: string;
   email!: string;
 
+  candidateForm = new CandidatesRequest();
+
   constructor(
     public titleCourse: TitleCourseService,
     public umanaFormaRestService: UmanaFormaRestServiceService,
@@ -28,6 +30,7 @@ export class AddCandidateComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setPage("Registration");
+    this.candidateForm.clear();
   }
 
   addToForm(event: Event): void {
@@ -61,6 +64,10 @@ export class AddCandidateComponent implements OnInit {
 
   subscriptionKo(error: HttpErrorResponse): void {
     alert("Subscription Faild")
+  }
+
+  annulla(event:Event):void {
+    this.router.navigateByUrl("/course-list");
   }
 
 }
