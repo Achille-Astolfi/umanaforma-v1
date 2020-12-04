@@ -1,6 +1,6 @@
 <header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-      <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-sm navbar-light back-panna">
+      <a class="navbar-brand" routerLink="../home">
         <img src="/assets/new_favicon.png" alt="Logo" height="32">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -9,17 +9,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="../home" routerLinkActive="active">Home</a>
+        <li class="nav-item" routerLinkActive="active back-g rounded text-white" >
+            <a class="nav-link" routerLink="../home" routerLinkActive="text-white">Home</a>
           </li>
-          <li class="nav-item" *ngIf="(umanaRestService.isUser() && !umanaRestService.isAdmin())">
-            <a class="nav-link" routerLink="../corsi-user" routerLinkActive="active">Corsi</a>
+          <li class="nav-item" routerLinkActive="active back-g rounded text-white" *ngIf="(umanaRestService.isUser() && !umanaRestService.isAdmin())">
+            <a class="nav-link" routerLink="../dashboard-user" routerLinkActive="text-white">Dashboard</a>
           </li>
-          <li class="nav-item" *ngIf="(umanaRestService.isAdmin())">
-            <a class="nav-link" routerLink="../corsi-admin" routerLinkActive="active">Corsi</a>
+          <li class="nav-item" routerLinkActive="active back-g rounded text-white" *ngIf="(umanaRestService.isAdmin())">
+            <a class="nav-link" routerLink="../dashboard-admin" routerLinkActive="text-white">Dashboard</a>
           </li>
-          <li class="nav-item" *ngIf="(umanaRestService.isAdmin())">
-            <a class="nav-link" routerLink="../candidati" routerLinkActive="active">Candidati</a>
+          <li class="nav-item" routerLinkActive="active back-g rounded text-white" *ngIf="(umanaRestService.isUser() && !umanaRestService.isAdmin())">
+            <a class="nav-link" routerLink="../corsi-user" routerLinkActive="text-white">Corsi</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active back-g rounded text-white" *ngIf="(umanaRestService.isAdmin())">
+            <a class="nav-link" routerLink="../corsi-admin" routerLinkActive="text-white">Corsi</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active back-g rounded text-white" *ngIf="(umanaRestService.isAdmin())">
+            <a class="nav-link" routerLink="../candidati" routerLinkActive="text-white">Candidati</a>
           </li>
         </ul>
         <!--NON LOGGATO-->
@@ -30,7 +36,7 @@
               <icon-person></icon-person>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <button class="dropdown-item" type="button" data-toggle="modal" data-target="#staticBackdrop">Log
+              <button class="dropdown-item log-button" type="button" data-toggle="modal" data-target="#staticBackdrop">Log
                 in</button>
             </div>
           </li>
@@ -43,7 +49,7 @@
               <icon-person></icon-person> {{ umanaRestService.showUsername }}
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <button class="dropdown-item" type="button" (click)="doLogout($event)">Log
+              <button class="dropdown-item log-button" type="button" (click)="doLogout($event)">Log
                 out</button>
             </div>
           </li>
@@ -55,7 +61,7 @@
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header back-panna">
         <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
           <span aria-hidden="true">&times;</span>
@@ -78,7 +84,7 @@
           </div>
         </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer back-panna">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
         <button type="button" class="btn btn-primary" (click)="doLogin($event)">Login</button>
       </div>
