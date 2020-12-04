@@ -59,6 +59,10 @@ export class UmanaFormaRestServiceService {
     return this.userLogged === "admin";
   }
 
+  isUser(): boolean {
+    return this.userLogged === "user";
+  }
+
   logout(): Observable<string> {
     this.logged = true;
     this.userLogged = "";
