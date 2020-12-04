@@ -95,6 +95,19 @@ export class UmanaFormaRestServiceService {
     return this.http.get<Course>(url + "/courses/" + id, { headers });
   }
 
+  getCandidates(): Observable<Candidate[]> {
+    if (this.token === undefined) {
+      return from([]);
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+    let response = this.http.get<CandidatesResponse>(url + "/candidates", { headers });
+    return response.pipe(map((answer) => this.getCandidatesMap(answer)));
+  }
+
+  private getCandidatesMap(answer: CandidatesResponse): Candidate[] {
+    return answer._embedded.candidates;
+  }
+
   onAddCandidate(first: string, last: string, email: string): Observable<string | null> {
     if (this.token === undefined) {
       return from([]);
