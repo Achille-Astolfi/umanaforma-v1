@@ -22,7 +22,6 @@ export class FinalHomeComponent implements OnInit {
   }
 
   doLogin(event:Event){
-    (window as any)["$"]('#staticBackdrop').modal('hide');
     let response = this.logRest.login(this.person.username,this.person.password);
     response.subscribe((answer)=> this.loginOk(answer), (error)=>this.loginNo(error));
   }
@@ -30,6 +29,7 @@ export class FinalHomeComponent implements OnInit {
   private loginOk(answer:string):void{
     this.error = false;
     this.message = answer;
+    (window as any)["$"]('#staticBackdrop').modal('hide');
     if(this.person.username === "user"){
       this.router.navigateByUrl("/dashboard-user");
     }else if(this.person.username === "admin"){
@@ -39,10 +39,12 @@ export class FinalHomeComponent implements OnInit {
 
   private loginNo(error: HttpErrorResponse): void{
     this.error=true;
-    alert("Username o password non corrispondono.");
     this.person.username = "";
     this.person.password = "";
     console.error(error);
+    setTimeout(() => {
+      this.error=false;
+    }, 5000);
   }
 
   annulla(event: Event): void{

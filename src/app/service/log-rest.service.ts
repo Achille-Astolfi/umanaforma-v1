@@ -18,16 +18,16 @@ const url = "/api";
 })
 export class LogRestService {
 
-  isAlive = false;
+  isAlive?: boolean;
   roles = new Array<string>();
-  corso!: Course;
-  candidate = new Array<Candidate>();
-  candidateTot = new Array<Candidate>();
+  username?: string;
   
   //Il token di autorizzazione per le chiamare REST
   private token?: string;
-  username?: string;
 
+  corso!: Course;
+  candidate = new Array<Candidate>();
+  
   constructor(private http: HttpClient) { }
 
   checkAlive(): void{
@@ -91,14 +91,14 @@ export class LogRestService {
       let headers = new HttpHeaders({authorization: this.token});
   
       let response = this.http.get<CoursesResponse>(url + "/courses", {headers});
-  
       return response.pipe(map((answer) => this.getCoursesMap(answer)));
     }
   
     getCoursesMap(answer: CoursesResponse): Course[]{
       return answer._embedded.courses;
     }
-
+    
+    //"iscriviti"
     postCandidate(firstName: string, lastName: string, emailAddress: string): Observable<string>{
       if (this.token === undefined) {
         return from([]);
@@ -126,7 +126,8 @@ export class LogRestService {
       }
       return "Iscrizione non effettuata correttamente.";
     }
-
+  
+    //in seguito a "postCandidate"
     postSubscription(course: number, candidate: number): Observable<string>{
       if (this.token === undefined) {
         return from([]);
@@ -138,12 +139,12 @@ export class LogRestService {
       let response = this.http.post<null>(url + "/subscriptions", request, {headers});
       return response.pipe(map((answer) => this.subscriptionMap(answer)));
     }
-
+  
     subscriptionMap(answer: null): string {
       console.log("Sottoscrizione riuscita con successo");
       return "Sottoscrizione effettuata correttamente.";
     }
-
+  
     getCourseById(id:number):Observable<Course>{
       if (this.token === undefined) {
         return from([]);
@@ -152,7 +153,7 @@ export class LogRestService {
       let response = this.http.get<Course>(url + "/courses/" + id, {headers});
       return response;
     }
-
+  
     getTotCandidate(): Observable<CandidateTotResponse>{
       if (this.token === undefined) {
         return from([]);
@@ -161,5 +162,4 @@ export class LogRestService {
       let response = this.http.get<CandidateTotResponse>(url + "/candidates", {headers});
       return response;
     }
-    
 }

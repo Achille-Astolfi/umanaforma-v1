@@ -4,13 +4,15 @@
       <div class="col" *ngFor="let course of courseList">
         <h5>{{course.id}}: {{course.description}}</h5>
         <p>
-          Ricordati di indossare sempre la mascherina nei luoghi chiusi,
-          Lavati spesso le mani con acque e sapone, o usa un gel a base alcolica (da non bere),
-          Non toccati occhi, naso e bocca con le mani,
-          Evita contatti ravvicinati mantenendo la distanza di almeno un metro,
-          Evita le strette di mano e gli abbracci,
-          Evita luoghi affollati,
-          Se hai sintomi influenzali resta a casa.
+          Il corso di Laurea si propone di formare una figura professionale che sia in grado di comprendere,
+          progettare, realizzare e gestire sistemi informatici efficienti ed efficaci capaci di supportare le
+          sfide della società moderna.
+
+          Il corso è composto da discipline di base, caratterizzanti ed affini. La nuova strutturazione
+          didattica è caratterizzata da una ottima preparazione di base in matematica e fisica — indispensabili
+          strumenti per la figura dell’Ingegnere dell’informazione — e da una completa e rigorosa formazione
+          sugli argomenti caratterizzanti della più moderna disciplina informatica, coadiuvate da attività
+          pratiche e di laboratorio fondamentali per la maturazione dei concetti teorici.
         </p>
         <button id="iscriviti" class="btn btn-primary" (click)="getTipoCorso($event, course)" routerLink="/corsi-iscriviti">Iscriviti</button>
       </div>

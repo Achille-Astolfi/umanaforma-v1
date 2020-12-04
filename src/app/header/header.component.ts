@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
 
   checkRole(): string | undefined{
     return this.logRest.username;
-    
   }
 
   onLogout(event:Event):void{

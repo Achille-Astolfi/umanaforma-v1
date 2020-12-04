@@ -20,7 +20,7 @@
               <input type="password" class="form-control" [ngClass]="{'is-invalid': error}" id="password" name="password" [(ngModel)]="person.password" placeholder="password">
             </div>
             <div class="alert alert-danger" role="alert" *ngIf="error">
-              Username o password non corrispondono.
+              Username o password non sono corretti.
               <button type="button" class="close" aria-label="Chiudi">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -29,7 +29,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="annulla($event)">Annulla</button>
-          <button id="login" type="button" class="btn btn-primary" (click)="doLogin($event)" routerLink="/dashboard-admin">Login</button>
+          <button id="login" type="button" class="btn btn-primary" (click)="doLogin($event)">Login</button>
         </div>
       </div>
     </div>
@@ -37,12 +37,16 @@
   <main>
     <div class="container">
       <h1>Umana Forma</h1>
+      <p>Questa pagina è il punto di partenza per accedere alle informazioni relative a Umana Forma.</p>
+      <p>E'possibile consultare le informazioni dei singoli corsi (User e Admin) e dei candidati (solo Admin).</p>
+      <p>Dall'8 Giugno 2020 sono aperte le immatricolazioni ai corsi per l'anno accademico 2020/2021.</p>
+      <p>Per iniziare la procedura di registrazione devi prima accedere cliccando sull'omino in testa alla pagina</p>
+      <p>e accedere come user. Bastano 2 minuti e pochissimi click.</p>
+      <br>
       <ul>Gruppo 3
         <li>Delerci Denis</li>
-        <li>Delerci Denis</li>
-        <li>Delerci Denis</li>
-        <li>Abbiamo paura di metterci anche noi, ci mena....</li>
+        <li>Messina Michele</li>
+        <li>Pino Pietro</li>
       </ul>
-      <h4>Accedi dopo aver chiesto il permesso (a Denis)</h4>
     </div>
   </main>
