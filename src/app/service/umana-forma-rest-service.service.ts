@@ -56,11 +56,11 @@ export class UmanaFormaRestServiceService {
   }
 
   isAdmin(): boolean {
-    return this.userLogged === "admin";
+    return this.roles.indexOf("ADMIN") >= 0;
   }
 
   isUser(): boolean {
-    return this.userLogged === "user";
+    return this.roles.indexOf("USER") >= 0 && !this.isAdmin();
   }
 
   logout(): Observable<string> {
@@ -72,6 +72,7 @@ export class UmanaFormaRestServiceService {
     this.router.navigateByUrl("/home");
     return from(["Logout effettuato correttamente!"]);
   }
+  
   getCourses(): Observable<Course[]> {
     if (this.token === undefined) {
       // posso restituire undefined o un observable vuoto

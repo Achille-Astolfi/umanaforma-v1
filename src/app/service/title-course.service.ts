@@ -15,7 +15,7 @@ export class TitleCourseService {
   }
 
   setIdCourse(idCourse: number){
-    this.idCourse=idCourse;
+    this.idCourse = idCourse;
   }
 
 }

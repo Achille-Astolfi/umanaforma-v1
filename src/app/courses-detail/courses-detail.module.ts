@@ -9,6 +9,10 @@ import { CoursesDetailItemComponent } from './courses-detail-item/courses-detail
   declarations: [CoursesDetailComponent, CoursesDetailItemComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    CoursesDetailComponent
   ]
 })
 export class CoursesDetailModule { }
+export { CoursesDetailComponent }

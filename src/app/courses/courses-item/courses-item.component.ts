@@ -29,6 +29,8 @@ export class CoursesItemComponent implements OnInit {
   }
 
   doActionDetail(event: Event): void {
+    this.titleCourse.setCourse(this.course.description);
+    this.titleCourse.setIdCourse(this.course.id);
     this.router.navigateByUrl("/corsi-dettaglio");
   }
 

@@ -19,7 +19,10 @@ export class AppComponent {
 
   message?: string;
 
-  constructor(private router: Router, public umanaFormaRestService: UmanaFormaRestServiceService) { }
+  constructor(
+    private router: Router, 
+    public umanaFormaRestService: UmanaFormaRestServiceService
+  ) { }
 
   displayingSample(): boolean {
     return this.router.url.startsWith("/sample");
@@ -39,20 +42,15 @@ export class AppComponent {
     (window as any)["$"]('#staticBackdrop').modal('hide');
     this.umanaFormaRestService.userLogged = this.bkUser;
     this.umanaFormaRestService.logged = false; //non capisco il significato
-    //this.utente.clear();
   }
 
   private loginKo(error: HttpErrorResponse): void {
     this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
-    //alert("Errore nel login");
-    console.log("Valori Errati!");
-    
   }
 
   private loginVerified(): void {
     let response = this.umanaFormaRestService.login(this.bkUser, this.bkPassword);
     response.subscribe((answer) => this.loginOk(answer), (error) => this.loginKo(error));
-    this.clearAll(); 
   }
 
   userDashboardChoise(): string {

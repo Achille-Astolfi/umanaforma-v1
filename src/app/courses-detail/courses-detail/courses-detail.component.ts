@@ -25,8 +25,7 @@ export class CoursesDetailComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setPage("Course Detail");
     this.umanaFormaRestService.getCourseById(this.titleCourse.idCourse)
-    .subscribe((answer) => this.getCoursesByIdOk(answer),
-    (error) => this.getCoursesByIdKo(error));
+    .subscribe((answer) => this.getCoursesByIdOk(answer), (error) => this.getCoursesByIdKo(error));
   }
 
   private getCoursesByIdOk(answer: Course): void {
