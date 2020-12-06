@@ -2,13 +2,13 @@
   <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <a class="navbar-brand" routerLink="home" *ngIf="!umanaFormaRestService.isLogged()">
-        <img src="/assets/new_favicon.png" alt="Logo" height="32">
+        <img src="/assets/logo.png" alt="Logo" height="30" width="35">
       </a>
       <a class="navbar-brand" routerLink="dashboard-user" *ngIf="umanaFormaRestService.isUser()">
-        <img src="/assets/new_favicon.png" alt="Logo" height="32">
+        <img src="/assets/logo.png" alt="Logo" height="30" width="35">
       </a>
       <a class="navbar-brand" routerLink="dashboard-admin" *ngIf="umanaFormaRestService.isAdmin()">
-        <img src="/assets/new_favicon.png" alt="Logo" height="32">
+        <img src="/assets/logo.png" alt="Logo" height="30" width="35">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,24 +61,24 @@
         </div>
         <form ngNativeValidate (submit)="doLogin($event)">
           <div class="modal-body">
-
             <div class="form-group">
-              <label for="username">Username</label>
+              <label for="username">Username*</label>
               <input [ngClass]="{'is-invalid': umanaFormaRestService.errorMessage}" type="text" class="form-control"
-                id="username" placeholder="Username" [(ngModel)]="utente.username"
-                [ngModelOptions]="{standalone: true}" autocomplete="off" required autofocus tabindex="-1">
+                id="username" placeholder="Username" [(ngModel)]="utente.username" [ngModelOptions]="{standalone: true}"
+                autocomplete="off" required autofocus tabindex="-1">
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
+              <label for="password">Password*</label>
               <input [ngClass]="{'is-invalid': umanaFormaRestService.errorMessage}" type="password" class="form-control"
                 id="password" placeholder="Password" [(ngModel)]="utente.password" [ngModelOptions]="{standalone: true}"
                 autocomplete="off" required>
             </div>
             <div *ngIf="!umanaFormaRestService.isLogged()">
-              <div class="alert alert-danger" role="alert" *ngIf ="umanaFormaRestService.errorMessage">
+              <div class="alert alert-danger" role="alert" *ngIf="umanaFormaRestService.errorMessage">
                 {{ umanaFormaRestService.errorMessage }}
               </div>
             </div>
+            <small id="campi_obbligatori" class="form-text text-muted">(*) campi obbligatori</small>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearAll()">Annulla</button>
@@ -88,7 +88,6 @@
       </div>
     </div>
   </div>
-
 </div>
 <router-outlet></router-outlet>
 <div *ngIf="!displayingSample()">

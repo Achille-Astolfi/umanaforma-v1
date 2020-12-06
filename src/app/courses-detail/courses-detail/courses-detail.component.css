@@ -1,0 +1,23 @@
+main {
+    font-family: 'Roboto', 'sans-serif';
+    margin: 50px;
+    display: flex;
+}
+
+.container {
+    width: 40%;
+    float: left;
+    margin-left: 100px;
+    margin-right: 0px;
+}
+
+h5 {
+    font-family: 'Balsamiq Sans';
+    font-weight: bold;
+    font-size: 30px;
+}
+#img {
+    float: right;
+    width: 30%;
+    margin-top: 30px;
+}

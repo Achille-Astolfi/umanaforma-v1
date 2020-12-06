@@ -19,6 +19,8 @@ export class AddCandidateComponent implements OnInit {
   cognome!: string;
   email!: string;
 
+  errorForm?:string;
+
   candidateForm = new CandidatesRequest();
 
   constructor(
@@ -49,6 +51,9 @@ export class AddCandidateComponent implements OnInit {
 
   addToFormKo(error: HttpErrorResponse) {
     console.error(error.status);
+    if (error.status === 409) {
+      this.errorForm = "Utente già iscritto";
+    }
   }
 
   subscription(courseId: number, candidateId: number): Observable<number | null> {

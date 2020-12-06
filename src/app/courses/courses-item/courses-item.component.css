@@ -1,0 +1,18 @@
+p {
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 18px;
+}
+
+#titoletto {
+    font-family: 'Balsamiq Sans';
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#istruzioni {
+    font-size: 16px;
+}
+
+button {
+    font-family: 'Balsamiq Sans';
+}

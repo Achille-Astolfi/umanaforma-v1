@@ -1,0 +1,36 @@
+main {
+    background-image:url("/assets/sfondo2.jpg");
+    background-size:cover;
+    height: 630px;
+    padding-top: 50px;
+}
+
+h1 {
+    font-family: 'Bangers', sans-serif;
+    color: #f14;
+    font-size:60px;
+}
+
+.container {
+    display: flex;
+}
+
+#text {
+    margin-top: 15px;
+    width: 60%;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#titoletto {
+    font-size: 25px;
+}
+
+#accedi {
+    padding-top: 30px;
+    font-size: 14px;
+}
+
+#img {
+    width: 40%;
+}

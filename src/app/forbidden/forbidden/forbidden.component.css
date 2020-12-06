@@ -1,0 +1,11 @@
+.container {
+    width: 800px;
+}
+
+h3 {
+    font-family: 'Bangers', sans-serif;
+    color: #f14;
+    font-size:50px;
+    margin: 30px;
+    text-align: center;
+}
