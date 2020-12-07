@@ -1,14 +1,19 @@
 header  {
-    font-family: 'Balsamiq Sans', sans-serif;
+    font-family:Open Sans,Arial,sans-serif;
     font-size: 18px;
 }
 
 form {
-    font-family:'Balsamiq Sans', sans-serif ;
+    font-family:Open Sans,Arial,sans-serif;
 }
 
 #campi_obbligatori {
     font-size: 10px;
+}
+
+#logo {
+    margin-bottom:0;
+    max-height:30%;
 }
 
 footer {

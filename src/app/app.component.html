@@ -2,13 +2,13 @@
   <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <a class="navbar-brand" routerLink="home" *ngIf="!umanaFormaRestService.isLogged()">
-        <img src="/assets/logo.png" alt="Logo" height="30" width="35">
+        <img src="/assets/logo.png" id="logo" alt="Logo" width="81.89" height="43.2">
       </a>
       <a class="navbar-brand" routerLink="dashboard-user" *ngIf="umanaFormaRestService.isUser()">
-        <img src="/assets/logo.png" alt="Logo" height="30" width="35">
+        <img src="/assets/logo.png" alt="Logo" width="81.89" height="43.2">
       </a>
       <a class="navbar-brand" routerLink="dashboard-admin" *ngIf="umanaFormaRestService.isAdmin()">
-        <img src="/assets/logo.png" alt="Logo" height="30" width="35">
+        <img src="/assets/logo.png" alt="Logo" width="81.89" height="43.2">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

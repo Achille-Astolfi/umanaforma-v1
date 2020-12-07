@@ -6,7 +6,7 @@ main {
 }
 
 h1 {
-    font-family: 'Bangers', sans-serif;
+    font-family:Open Sans,Arial,sans-serif;
     color: #f14;
     font-size:60px;
 }
@@ -19,7 +19,7 @@ h1 {
     margin-top: 15px;
     width: 60%;
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+    font-family: Open Sans,Arial,sans-serif;
 }
 
 #titoletto {
