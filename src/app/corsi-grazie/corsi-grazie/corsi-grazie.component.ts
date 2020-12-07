@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TitleCourseService } from 'src/app/service/title-course.service';
 import { TitleService } from 'src/app/service/title.service';
 
@@ -9,13 +10,21 @@ import { TitleService } from 'src/app/service/title.service';
 })
 export class CorsiGrazieComponent implements OnInit {
 
-  constructor( 
+  constructor(
     public titleCourse: TitleCourseService,
-    private titleService:TitleService
+    private titleService: TitleService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
     this.titleService.setPage("Thanks for Registration");
+    setTimeout(() => {
+      this.redirect();
+    }, 5000)
+  }
+
+  redirect() {
+    this.router.navigateByUrl("/dashboard-user");
   }
 
 }
