@@ -10,6 +10,8 @@ import { TitleService } from 'src/app/service/title.service';
 })
 export class CorsiGrazieComponent implements OnInit {
 
+  public endTime = 6;
+
   constructor(
     public titleCourse: TitleCourseService,
     private titleService: TitleService,
@@ -18,13 +20,24 @@ export class CorsiGrazieComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setPage("Thanks for Registration");
-    setTimeout(() => {
-      this.redirect();
-    }, 5000)
+
+    this.redirect();
   }
 
-  redirect() {
-    this.router.navigateByUrl("/dashboard-user");
-  }
+  async redirect() {
+    for (let i=0; i <= 6; i++) {
+      if (i < 6) {
+          this.endTime = this.endTime - 1;
+          await this.delay(1000);
+        } else {
+          this.router.navigateByUrl("/dashboard-user");
+        }
+      }
+      
+    }
 
-}
+    delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+   
+  }
