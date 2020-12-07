@@ -30,25 +30,16 @@ export class FinalCorsiIscrivitiComponent implements OnInit {
   }
 
   iscriviti(event: Event): void{
-    if(this.candidate.firstName.length>=3 &&
-      this.candidate.lastName.length>=3 &&
-      this.candidate.emailAddress.length>=3 &&
-      this.controlloEmail){
-      this.logRest.postCandidate(this.candidate.firstName, this.candidate.lastName, this.candidate.emailAddress)
-      .subscribe((answer) => this.iscrivitiOk(answer), (error) => this.iscrivitiKo(error));
-      this.router.navigateByUrl("/corsi-grazie");
-    }
-    if(this.candidate.firstName.length<3 || this.candidate.firstName === undefined){
-      this.candidate.firstName = "";
-      this.errorFirstName = true;
-    }
-    if(this.candidate.lastName.length<3 || this.candidate.lastName === undefined){
-      this.candidate.lastName = "";
-      this.errorLastName = true;
-    }
-    if(this.candidate.emailAddress.length<3 || this.candidate.emailAddress === undefined || this.candidate.emailAddress.indexOf("@") === -1){
-      this.candidate.emailAddress = "";
-      this.errorEmailAddress = true;
+    try{
+      if(this.controlloDati()){
+        this.logRest.postCandidate(this.candidate.firstName, this.candidate.lastName, this.candidate.emailAddress)
+        .subscribe((answer) => this.iscrivitiOk(answer), (error) => this.iscrivitiKo(error));
+        this.router.navigateByUrl("/corsi-grazie");
+      }
+    }catch(error){
+      if(this.candidate.firstName === undefined){this.errorFirstName = true;}
+      if(this.candidate.lastName === undefined){this.errorLastName = true;}
+      if(this.candidate.emailAddress === undefined){this.errorEmailAddress = true;}
     }
   }
 
@@ -71,27 +62,49 @@ export class FinalCorsiIscrivitiComponent implements OnInit {
     console.error(error);
   }
 
-  controlloEmail(email: string): boolean{
-    if(this.candidate.emailAddress.indexOf("@") !== -1 &&
-      (this.candidate.emailAddress.indexOf(".com")!==-1 || this.candidate.emailAddress.indexOf(".it")!==-1) &&
-      this.candidate.emailAddress.indexOf(",") !== -1 &&
-      this.candidate.emailAddress.indexOf(";") !== -1 &&
-      this.candidate.emailAddress.indexOf("(") !== -1 &&
-      this.candidate.emailAddress.indexOf(")") !== -1 &&
-      this.candidate.emailAddress.indexOf("[") !== -1 &&
-      this.candidate.emailAddress.indexOf("]") !== -1 &&
-      this.candidate.emailAddress.indexOf("{") !== -1 &&
-      this.candidate.emailAddress.indexOf("}") !== -1 &&
-      this.candidate.emailAddress.indexOf("<") !== -1 &&
-      this.candidate.emailAddress.indexOf(">") !== -1 &&
-      this.candidate.emailAddress.indexOf("+") !== -1 &&
-      this.candidate.emailAddress.indexOf("*") !== -1 &&
-      this.candidate.emailAddress.indexOf(";") !== -1
-      ){
-      return true;
+  controlloDati(): boolean{
+    if(this.candidate.firstName.length<3 || this.candidate.firstName === undefined){
+      this.candidate.firstName = "";
+      this.errorFirstName = true;
     }else{
+      this.errorFirstName = false;
+    }
+
+    if(this.candidate.lastName.length<3 || this.candidate.lastName === undefined){
+      this.candidate.lastName = "";
+      this.errorLastName = true;
+    }else{
+      this.errorLastName = false;
+    }
+
+    if(this.candidate.emailAddress.length < 3 ||
+        this.candidate.emailAddress === undefined ||
+        this.candidate.emailAddress.indexOf("@") === -1 ||
+        this.candidate.emailAddress.indexOf(",") !== -1 ||
+        this.candidate.emailAddress.indexOf(";") !== -1 ||
+        this.candidate.emailAddress.indexOf("(") !== -1 ||
+        this.candidate.emailAddress.indexOf(")") !== -1 ||
+        this.candidate.emailAddress.indexOf("[") !== -1 ||
+        this.candidate.emailAddress.indexOf("]") !== -1 ||
+        this.candidate.emailAddress.indexOf("{") !== -1 ||
+        this.candidate.emailAddress.indexOf("}") !== -1 ||
+        this.candidate.emailAddress.indexOf("<") !== -1 ||
+        this.candidate.emailAddress.indexOf(">") !== -1 ||
+        this.candidate.emailAddress.indexOf("+") !== -1 ||
+        this.candidate.emailAddress.indexOf("*") !== -1 ||
+        this.candidate.emailAddress.indexOf(".com") === -1 ||
+        this.candidate.emailAddress.indexOf(".it") === -1){
+          
+      this.candidate.emailAddress = "";
+      this.errorEmailAddress = true;
+    }else{
+      this.errorEmailAddress = false;
+    }
+
+    if(this.errorFirstName === true || this.errorLastName === true || this.errorEmailAddress === true){
       return false;
     }
+    return true;
   }
 
 }

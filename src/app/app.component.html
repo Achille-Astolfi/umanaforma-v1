@@ -8,4 +8,5 @@
   <app-footer></app-footer>
 </div>
 
-<p>Lo stato del server è: {{describeAlive()}}</p>
+<h5 *ngIf="describeAlive()==='attivato'">Lo stato del server è: {{describeAlive()}}</h5>
+<h4 *ngIf="describeAlive()==='non attivato' || describeAlive()==='sconosciuto'">Lo stato del server è: {{describeAlive()}}</h4>

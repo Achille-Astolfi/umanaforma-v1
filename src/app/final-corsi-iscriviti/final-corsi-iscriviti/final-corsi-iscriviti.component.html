@@ -24,11 +24,11 @@
             </div>
             <button type="button" class="btn btn-secondary" (click)="annulla($event)">Annulla</button>
             &nbsp;
-            <button id="iscriviti" type="button" class="btn btn-primary" (click)="iscriviti($event)" href="#">Iscriviti</button>
+            <button id="iscriviti" type="button" class="btn btn-primary" (click)="iscriviti($event)">Iscriviti</button>
             <br>
             <br>
             <div class="alert alert-danger" role="alert" *ngIf="errorFirstName || errorLastName || errorEmailAddress">
-                Credenziali errate.
+                Ricontrolla i dati inseriti.
                 <button type="button" class="close" aria-label="Chiudi">
                   <span aria-hidden="true">&times;</span>
                 </button>

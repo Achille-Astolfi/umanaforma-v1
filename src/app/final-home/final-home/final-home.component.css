@@ -1,1 +1,8 @@
 #login     { background-color: rgb(255, 102, 0) }
+
+h1 { color: rgb(255, 102, 0); text-shadow: -1px 0 1px white, 0 -1px 1px white, 0 1px 1px white, 1px 0 1px white, 0 0 8px white, 0 0 8px white, 0 0 8px white, 2px 2px 3px black;}
+
+p {font-family: Georgia, "Times New Roman", serif;}
+
+ul { color: #0E0A07; text-shadow: 0 1px 1px #4d4d4d;}
+

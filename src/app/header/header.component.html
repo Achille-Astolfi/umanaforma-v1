@@ -9,22 +9,22 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active" routerLinkActive="active">
+          <li id="home" class="nav-item active" routerLinkActive="active">
             <a class="nav-link" routerLink="/home">Home</a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isUser() && !this.logRest.isAdmin()">
+          <li id="dashboard" class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isUser() && !this.logRest.isAdmin()">
             <a class="nav-link" routerLink="/dashboard-user">Dashboard</a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isAdmin() && this.logRest.isUser()">
+          <li id="dashboard" class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isAdmin() && this.logRest.isUser()">
             <a class="nav-link" routerLink="/dashboard-admin">Dashboard</a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isUser() && !this.logRest.isAdmin()">
+          <li id="corsi" class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isUser() && !this.logRest.isAdmin()">
             <a class="nav-link" routerLink="/corsi-user">Corsi</a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isAdmin() && this.logRest.isUser()">
+          <li id="corsi" class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isAdmin() && this.logRest.isUser()">
             <a class="nav-link" routerLink="/corsi-admin">Corsi</a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isAdmin()">
+          <li id="candidati" class="nav-item" routerLinkActive="active" *ngIf="this.logRest.isAdmin()">
             <a class="nav-link" routerLink="/candidati">Candidati</a>
           </li>
         </ul>
@@ -36,20 +36,19 @@
               <icon-person></icon-person>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <button class="dropdown-item" type="button" data-toggle="modal" data-target="#staticBackdrop">Log
-                in</button>
+              <button id="login1" class="dropdown-item" type="button" data-toggle="modal" data-target="#staticBackdrop">Log in</button>
             </div>
           </li>
         </ul>
 
         <ul class="navbar-nav" *ngIf="this.logRest.isUser() || this.logRest.isAdmin()">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              <a id="home" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <icon-person></icon-person> {{checkRole()}}
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <button class="dropdown-item" type="button" (click)="onLogout($event)">Log out</button>
+                <button id="logout" class="dropdown-item" type="button" (click)="onLogout($event)">Log out</button>
               </div>
             </li>
           </ul>
@@ -60,7 +59,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+          <h5 id="staticBackdropLabel" class="modal-title">Login</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
             <span aria-hidden="true">&times;</span>
           </button>
