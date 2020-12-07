@@ -14,13 +14,15 @@ export class AppComponent {
   private password !: string;
   utente = new LoginFormClass();
 
+  public endTime = 4;
+
   private bkUser !: string;
   private bkPassword !: string;
 
   message?: string;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     public umanaFormaRestService: UmanaFormaRestServiceService
   ) { }
 
@@ -47,6 +49,9 @@ export class AppComponent {
   private loginKo(error: HttpErrorResponse): void {
     this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
     this.utente.clear();
+    setTimeout(() => {
+      this.umanaFormaRestService.errorMessage = "";
+    }, 3000);
   }
 
   private loginVerified(): void {
@@ -66,5 +71,4 @@ export class AppComponent {
     this.utente.clear();
     this.umanaFormaRestService.errorMessage = "";
   }
-
 }

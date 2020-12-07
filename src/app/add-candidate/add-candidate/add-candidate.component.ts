@@ -44,7 +44,7 @@ export class AddCandidateComponent implements OnInit {
     if (answer !== null) {
       let id = answer.lastIndexOf("/");
       let val = parseInt(answer.substring(id + 1));
-      console.log("Val: " + val);
+      //console.log("Val: " + val);
       this.subscription(this.titleCourse.idCourse, val).subscribe((answerS) => this.subscriptionOk(answerS), (error) => this.subscriptionKo(error));
     }
   }
@@ -54,6 +54,9 @@ export class AddCandidateComponent implements OnInit {
     if (error.status === 409) {
       this.errorForm = "Utente già iscritto";
     }
+    setTimeout(() => {
+      this.errorForm = "";
+    }, 3000);
   }
 
   subscription(courseId: number, candidateId: number): Observable<number | null> {
