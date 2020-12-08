@@ -47,11 +47,15 @@ export class AppComponent {
   }
 
   private loginKo(error: HttpErrorResponse): void {
-    this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
-    this.utente.clear();
-    setTimeout(() => {
-      this.umanaFormaRestService.errorMessage = "";
-    }, 3000);
+    if(error.status === 504){
+      this.router.navigateByUrl("/gateway-timeout")
+    }else{
+      this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
+      this.utente.clear();
+      setTimeout(() => {
+        this.umanaFormaRestService.errorMessage = "";
+      }, 3000);
+   }
   }
 
   private loginVerified(): void {
