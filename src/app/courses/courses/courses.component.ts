@@ -31,7 +31,17 @@ export class CoursesComponent implements OnInit {
   }
 
   private getCoursesKo(error: HttpErrorResponse): void {
-    console.error(error);
+    //console.error(error);
+    switch(error.status) {
+      case 504:
+        this.router.navigateByUrl("/gateway-timeout");
+        break;
+      case 404:  this.router.navigateByUrl("/not-found"); 
+        break;
+      default:
+        this.router.navigateByUrl("/forbidden"); 
+        break;
+    }
   }
 
   action(event: Course): void {

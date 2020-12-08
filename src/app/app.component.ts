@@ -62,6 +62,7 @@ export class AppComponent {
         }, 3000);
         break;
     }
+    (window as any)["$"]('#staticBackdrop').modal('hide');
   }
 
 
