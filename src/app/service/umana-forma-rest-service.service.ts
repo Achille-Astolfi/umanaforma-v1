@@ -47,7 +47,7 @@ export class UmanaFormaRestServiceService {
     this.roles = answer.authorization.roles;
     this.token = answer.authentication.token_type + ' ' + answer.authentication.access_token;
 
-    console.log(this.token);
+    //console.log(this.token);
     return "Login done";
   }
 
@@ -92,7 +92,7 @@ export class UmanaFormaRestServiceService {
       return from([]);
     }
     let headers = new HttpHeaders({ authorization: this.token });
-    return this.http.get<Course>(url + "/courses/" + id, { headers });
+    return this.http.get<Course>(url + "/courses/" + id, { headers }); //da rivedere; peerché non c'è la pipe
   }
 
   getCandidates(): Observable<Candidate[]> {
@@ -102,6 +102,20 @@ export class UmanaFormaRestServiceService {
     let headers = new HttpHeaders({ authorization: this.token });
     let response = this.http.get<CandidatesResponse>(url + "/candidates", { headers });
     return response.pipe(map((answer) => this.getCandidatesMap(answer)));
+  }
+/**TODO Problema riscontrato da Claudiu sulla subscription:
+ * Per risolvere il problema descritto da Claudiu, bisogna una volta ricevuto il primo error 409 (relativo al candidato già esistente), 
+ * lanciare la sola post subscription dell'utente gia esistente (il problema è recuperare l'id dell'utente già esistente, 
+ * non c'è una get che fa questo settata sul server), 
+ * nel caso di un secondo 409 error allora l'utente oltre ad esistere già è anche giè iscritto a quel particolare corso */
+
+  getCandidateById(id: number): Observable<Candidate> { 
+    if (this.token === undefined) {
+      return from([]);
+    }
+    let headers = new HttpHeaders({ authorization: this.token });
+    //let response = this.http.get<CandidatesResponse>(url + "/candidates" + id, { headers });
+    return this.http.get<Candidate>(url + "/candidates" + id, { headers }); //ho provato a non mettere la pipe anche in questo metodo
   }
 
   private getCandidatesMap(answer: CandidatesResponse): Candidate[] {
@@ -123,7 +137,7 @@ export class UmanaFormaRestServiceService {
   }
 
   private onAddCandidateMap(answer: HttpResponse<null>): string | null {
-    console.log(answer.headers.get("location"));
+    //console.log("Location: " + answer.headers.get("location"));
     return answer.headers.get("location");
   }
 
@@ -134,6 +148,7 @@ export class UmanaFormaRestServiceService {
     let request = new SubscriptionRequest();
     request.course = course;
     request.candidate = candidate;
+    //console.log("Request Course: "+ request.course +" "+"Request Candidate: "+ request.candidate);
 
     let headers = new HttpHeaders({ authorization: this.token });
     let response = this.http.post<null>(url + "/subscriptions", request, { headers, observe: "response" })
@@ -141,7 +156,7 @@ export class UmanaFormaRestServiceService {
   }
 
   public onAddSubscriptionMap(answer: HttpResponse<null>): number | null {
-    console.log(answer.status);
+    //console.log(answer.status);
     return answer.status;
   }
 

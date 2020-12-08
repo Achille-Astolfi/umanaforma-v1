@@ -1,9 +1,8 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CandidatesRequest } from 'src/app/dto/candidates-request';
-import { SubscriptionRequest } from 'src/app/dto/subscription-request';
 import { TitleCourseService } from 'src/app/service/title-course.service';
 import { TitleService } from 'src/app/service/title.service';
 import { UmanaFormaRestServiceService } from 'src/app/service/umana-forma-rest-service.service';
@@ -44,7 +43,7 @@ export class AddCandidateComponent implements OnInit {
     if (answer !== null) {
       let id = answer.lastIndexOf("/");
       let val = parseInt(answer.substring(id + 1));
-      //console.log("Val: " + val);
+      //console.log("Title Course: "+ this.titleCourse.idCourse+ " "+"Val: " + val);
       this.subscription(this.titleCourse.idCourse, val).subscribe((answerS) => this.subscriptionOk(answerS), (error) => this.subscriptionKo(error));
     }
   }
