@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Candidate } from 'src/app/resource/candidate';
 import { Course } from 'src/app/resource/course';
 import { CourseCandidates } from 'src/app/resource/course-candidates';
@@ -20,6 +21,7 @@ export class CandidateCourseSubscribedComponent implements OnInit {
   constructor(
     private titleService: TitleService,
     private umanaFormaRestService: UmanaFormaRestServiceService,
+    private router: Router,
     public titleCourse: TitleCourseService
   ) { }
 
@@ -59,6 +61,16 @@ export class CandidateCourseSubscribedComponent implements OnInit {
   }
 
   private getCoursesKo(error: HttpErrorResponse): void {
-  console.error(error);
+  //console.error(error);
+  switch(error.status) {
+    case 504:
+      this.router.navigateByUrl("/gateway-timeout");
+      break;
+    case 404:  this.router.navigateByUrl("/not-found"); 
+      break;
+    default:
+      this.router.navigateByUrl("/forbidden"); 
+      break;
+  }
   }
 }

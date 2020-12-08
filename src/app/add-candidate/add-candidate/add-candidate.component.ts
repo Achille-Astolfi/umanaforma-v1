@@ -49,7 +49,7 @@ export class AddCandidateComponent implements OnInit {
   }
 
   addToFormKo(error: HttpErrorResponse) {
-    console.error(error.status);
+    //console.error(error.status);
     switch (error.status) {
       case 409:
         this.errorForm = "Utente già iscritto";

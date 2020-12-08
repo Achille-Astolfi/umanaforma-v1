@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CoursesResponse } from 'src/app/dto/courses-response';
 import { Candidate } from 'src/app/resource/candidate';
 import { Course } from 'src/app/resource/course';
@@ -17,6 +18,7 @@ export class CoursesDetailComponent implements OnInit {
   candidateList = new Array<Candidate>();
 
   constructor(
+    private router: Router,
     public titleCourse: TitleCourseService,
     public umanaFormaRestService : UmanaFormaRestServiceService,
     private titleService:TitleService
@@ -37,6 +39,16 @@ export class CoursesDetailComponent implements OnInit {
   }
 
   private getCoursesByIdKo(error: HttpErrorResponse): void {
-    console.error(error);
+    //console.error(error);
+    switch(error.status) {
+      case 504:
+        this.router.navigateByUrl("/gateway-timeout");
+        break;
+      case 404:  this.router.navigateByUrl("/not-found"); 
+        break;
+      default:
+        this.router.navigateByUrl("/forbidden"); 
+        break;
+    }
   }
 }
