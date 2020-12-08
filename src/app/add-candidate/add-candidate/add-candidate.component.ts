@@ -18,7 +18,7 @@ export class AddCandidateComponent implements OnInit {
   cognome!: string;
   email!: string;
 
-  errorForm?:string;
+  errorForm?: string;
 
   candidateForm = new CandidatesRequest();
 
@@ -26,7 +26,7 @@ export class AddCandidateComponent implements OnInit {
     public titleCourse: TitleCourseService,
     public umanaFormaRestService: UmanaFormaRestServiceService,
     public router: Router,
-    private titleService:TitleService
+    private titleService: TitleService
   ) { }
 
   ngOnInit(): void {
@@ -50,8 +50,13 @@ export class AddCandidateComponent implements OnInit {
 
   addToFormKo(error: HttpErrorResponse) {
     console.error(error.status);
-    if (error.status === 409) {
-      this.errorForm = "Utente già iscritto";
+    switch (error.status) {
+      case 409:
+        this.errorForm = "Utente già iscritto";
+        break;
+      case 504:
+        this.router.navigateByUrl("/gateway-timeout");
+        break;
     }
     setTimeout(() => {
       this.errorForm = "";
@@ -70,10 +75,18 @@ export class AddCandidateComponent implements OnInit {
   }
 
   subscriptionKo(error: HttpErrorResponse): void {
-    alert("Subscription Faild")
+    //alert("Subscription Faild")
+    switch (error.status) {
+      case 409:
+        this.errorForm = "Utente già iscritto";
+        break;
+      case 504:
+        this.router.navigateByUrl("/gateway-timeout");
+        break;
+    }
   }
 
-  annulla(event:Event):void {
+  annulla(event: Event): void {
     this.router.navigateByUrl("/course-list");
   }
 

@@ -10,6 +10,7 @@ import { CoursesComponent } from './courses/courses.module';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.module';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.module';
 import { ForbiddenComponent } from './forbidden/forbidden.module';
+import { GatewayTimeoutComponent } from './gateway-timeout/gateway-timeout.module';
 import { IsLoggedGuard } from './guard/is-logged.guard';
 import { TypeLoggedAdminGuard } from './guard/type-logged-admin.guard';
 import { TypeLoggedUserGuard } from './guard/type-logged-user.guard';
@@ -24,8 +25,9 @@ const routes: Routes = [
   { path: "corsi-grazie", component: CorsiGrazieComponent, canActivate: [TypeLoggedUserGuard] },
   { path: "corsi-dettaglio", component: CoursesDetailComponent, canActivate: [TypeLoggedAdminGuard] },
   { path: "candidates", component: CandidatesComponent, canActivate: [TypeLoggedAdminGuard] },
-  { path: "candidate-courses", component: CandidateCourseSubscribedComponent, canActivate: [TypeLoggedAdminGuard]},
-  { path: "forbidden", component: ForbiddenComponent },  
+  { path: "candidate-courses", component: CandidateCourseSubscribedComponent, canActivate: [TypeLoggedAdminGuard] },
+  { path: "forbidden", component: ForbiddenComponent },
+  { path: "gateway-timeout", component: GatewayTimeoutComponent },
   { path: "", pathMatch: "full", redirectTo: "/home" },
   { path: "**", pathMatch: "prefix", component: NotFoundComponent }
 
