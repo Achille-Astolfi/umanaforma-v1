@@ -92,7 +92,7 @@ export class UmanaFormaRestServiceService {
       return from([]);
     }
     let headers = new HttpHeaders({ authorization: this.token });
-    return this.http.get<Course>(url + "/courses/" + id, { headers }); //da rivedere; peerché non c'è la pipe
+    return this.http.get<Course>(url + "/courses/" + id, { headers });
   }
 
   getCandidates(): Observable<Candidate[]> {
@@ -115,7 +115,7 @@ export class UmanaFormaRestServiceService {
     }
     let headers = new HttpHeaders({ authorization: this.token });
     //let response = this.http.get<CandidatesResponse>(url + "/candidates" + id, { headers });
-    return this.http.get<Candidate>(url + "/candidates" + id, { headers }); //ho provato a non mettere la pipe anche in questo metodo
+    return this.http.get<Candidate>(url + "/candidates" + id, { headers });
   }
 
   private getCandidatesMap(answer: CandidatesResponse): Candidate[] {

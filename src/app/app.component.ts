@@ -43,16 +43,18 @@ export class AppComponent {
     this.router.navigateByUrl(this.userDashboardChoise());
     (window as any)["$"]('#staticBackdrop').modal('hide');
     this.umanaFormaRestService.userLogged = this.bkUser;
-    this.umanaFormaRestService.logged = false; //non capisco il significato
+    this.umanaFormaRestService.logged = false;
   }
 
   private loginKo(error: HttpErrorResponse): void {
     switch (error.status) {
       case 504:
         this.router.navigateByUrl("/gateway-timeout");
+        (window as any)["$"]('#staticBackdrop').modal('hide');
         break;
       case 404: 
         this.router.navigateByUrl("/not-found");
+        (window as any)["$"]('#staticBackdrop').modal('hide');
         break;
       default:
         this.umanaFormaRestService.errorMessage = "Invalid Username or Password";
@@ -62,7 +64,6 @@ export class AppComponent {
         }, 3000);
         break;
     }
-    (window as any)["$"]('#staticBackdrop').modal('hide');
   }
 
 
